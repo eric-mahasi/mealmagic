@@ -67,7 +67,7 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                       filled: true,
                       prefixIcon: Icon(
-                        Icons.phone,
+                        Icons.email,
                         color: Color(0xFF666666),
                         size: defaultIconSize,
                       ),
@@ -76,7 +76,7 @@ class _SignInPageState extends State<SignInPage> {
                           color: Color(0xFF666666),
                           fontFamily: defaultFontFamily,
                           fontSize: defaultFontSize),
-                      hintText: "Phone Number",
+                      hintText: "Email",
                     ),
                   ),
                   SizedBox(
@@ -111,6 +111,7 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                       hintText: "Password",
                     ),
+                    obscureText: true,
                   ),
                   SizedBox(
                     height: 15,
