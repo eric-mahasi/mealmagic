@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mealmagic/animation/scale_route.dart';
 import 'package:mealmagic/core/sign_in/sign_in.dart';
+import 'package:mealmagic/screens/home_page.dart';
 
 
 class SignUpPage extends StatelessWidget {
@@ -277,7 +278,9 @@ class SignInButtonWidget extends StatelessWidget {
                   fontFamily: "WorkSansBold"),
             ),
           ),
-          onPressed: () => {}),
+          onPressed: () => {
+            Navigator.push(context, ScaleRoute(page: HomePage()))
+          }),
     );
   }
 }

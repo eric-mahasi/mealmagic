@@ -13,7 +13,6 @@ class FoodDetailsPage extends StatefulWidget {
 class _FoodDetailsPageState extends State<FoodDetailsPage> {
   @override
   Widget build(BuildContext context) {
-    var key;
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -71,7 +70,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
               FoodTitleWidget(
                   productName: "Grilled Salmon",
                   productPrice: "\$96.00",
-                  productHost: "pizza hut", key: key),
+                  productHost: "pizza hut"),
               SizedBox(
                 height: 15,
               ),
@@ -129,7 +128,7 @@ class FoodTitleWidget extends StatelessWidget {
   String productHost;
 
   FoodTitleWidget({
-    required Key key,
+    Key? key,
     required this.productName,
     required this.productPrice,
     required this.productHost,
