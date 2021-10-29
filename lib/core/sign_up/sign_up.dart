@@ -41,11 +41,11 @@ class SignUpPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                    width: 230,
-                    height: 100,
+                    width: 300,
+                    height: 300,
                     alignment: Alignment.center,
                     child: Image.asset(
-                      "assets/images/menus/ic_food_express.png",
+                      "assets/images/doorstep-delivery.jpg",
                     ),
                   ),
                   SizedBox(
