@@ -5,7 +5,7 @@ import 'package:mealmagic/widgets/best_food.dart';
 import 'package:mealmagic/widgets/bottom_nav_bar.dart';
 import 'package:mealmagic/widgets/popular_foods.dart';
 import 'package:mealmagic/widgets/search.dart';
-import 'package:mealmagic/widgets/top_menus.dart';
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -39,7 +39,6 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: <Widget>[
             SearchWidget(),
-            TopMenus(),
             PopularFoodsWidget(),
             BestFoodWidget(),
           ],
