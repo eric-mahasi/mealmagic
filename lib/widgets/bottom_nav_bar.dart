@@ -28,14 +28,14 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
           ),
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.near_me),
+          icon: Icon(Icons.assignment),
           title: Text(
-            'Near By',
-            style: TextStyle(color: Color(0xFF2c2b2b)),
+            'Orders',
+            style: TextStyle(color: Color(0xff2c2b2b)),
           ),
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.card_giftcard),
+          icon: Icon(Icons.shopping_cart),
           title: Text(
             'Cart',
             style: TextStyle(color: Color(0xFF2c2b2b)),
