@@ -36,7 +36,7 @@ class BestFoodTitle extends StatelessWidget {
             style: TextStyle(
                 fontSize: 20,
                 color: Color(0xFF3a3a3b),
-                fontWeight: FontWeight.w300),
+                fontWeight: FontWeight.bold),
           ),
         ],
       ),
