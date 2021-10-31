@@ -51,7 +51,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                 semanticContainer: true,
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 child: Image.asset(
-                  'assets/images/bestfood/' + 'ic_best_food_8' + ".jpeg",
+                  '/images/best_foods/' + 'ic_best_food_8' + ".jpeg",
                 ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(3.0),

@@ -134,7 +134,7 @@ class PaymentMethodWidget extends StatelessWidget {
               Container(
                 alignment: Alignment.center,
                 child: Image.asset(
-                  "assets/images/menus/ic_credit_card.png",
+                  "/icons/ic_credit_card.png",
                   width: 50,
                   height: 50,
                 ),
@@ -348,7 +348,7 @@ class CartItem extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: Center(
                         child: Image.asset(
-                      "assets/images/popular_foods/$productImage.png",
+                      "/images/popular_foods/$productImage.png",
                       width: 110,
                       height: 100,
                     )),
@@ -398,7 +398,7 @@ class CartItem extends StatelessWidget {
                         Container(
                           alignment: Alignment.centerRight,
                           child: Image.asset(
-                            "assets/images/menus/ic_delete.png",
+                            "icons/ic_delete.png",
                             width: 25,
                             height: 25,
                           ),

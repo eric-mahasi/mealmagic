@@ -79,7 +79,7 @@ class PopularFoodTiles extends StatelessWidget {
                             alignment: Alignment.centerLeft,
                             child: Center(
                                 child: Image.asset(
-                                  'assets/images/popular_foods/' +
+                                  '/images/popular_foods/' +
                                       imageUrl +
                                       ".png",
                                   width: 130,

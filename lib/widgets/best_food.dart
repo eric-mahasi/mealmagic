@@ -81,7 +81,7 @@ class BestFoodTiles extends StatelessWidget {
               semanticContainer: true,
               clipBehavior: Clip.antiAliasWithSaveLayer,
               child: Image.asset(
-                'assets/images/bestfood/' + imageUrl + ".jpeg",
+                '/images/best_foods/' + imageUrl + ".jpeg",
               ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
