@@ -50,6 +50,9 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         width: double.infinity,
         height: 60,
         child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: Color(0xfff47a5a)
+          ),
           child: const Text(
             'Lets go right away!',
             style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
@@ -93,9 +96,9 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       skipFlex: 0,
       nextFlex: 0,
       //rtl: true, // Display as right-to-left
-      skip: const Text('Skip'),
-      next: const Icon(Icons.arrow_forward),
-      done: const Text('Done', style: TextStyle(fontWeight: FontWeight.w600)),
+      skip: const Text('Skip', style: TextStyle(color: Color(0xfff47a5a))),
+      next: const Icon(Icons.arrow_forward, color: Color(0xfff47a5a)),
+      done: const Text('Done', style: TextStyle(fontWeight: FontWeight.w600, color: Color(0xfff47a5a))),
       curve: Curves.fastLinearToSlowEaseIn,
       controlsMargin: const EdgeInsets.all(16),
       controlsPadding: kIsWeb
@@ -104,13 +107,14 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       dotsDecorator: const DotsDecorator(
         size: Size(10.0, 10.0),
         color: Color(0xFFBDBDBD),
+        activeColor: Color(0xfff47a5a),
         activeSize: Size(22.0, 10.0),
         activeShape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(25.0)),
         ),
       ),
       dotsContainerDecorator: const ShapeDecoration(
-        color: Colors.black87,
+        color: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
         ),
