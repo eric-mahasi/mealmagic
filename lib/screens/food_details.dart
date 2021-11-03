@@ -172,7 +172,7 @@ class AddToCartMenu extends StatelessWidget {
               width: 200.0,
               height: 45.0,
               decoration: new BoxDecoration(
-                color: Color(0xFFfd5352),
+                color: Color(0xfff47a5a),
                 border: Border.all(color: Colors.white, width: 2.0),
                 borderRadius: BorderRadius.circular(10.0),
               ),
@@ -190,7 +190,7 @@ class AddToCartMenu extends StatelessWidget {
           IconButton(
             onPressed: () {},
             icon: Icon(Icons.add),
-            color: Color(0xFFfd5352),
+            color: Color(0xfff47a5a),
             iconSize: 30,
           ),
         ],
