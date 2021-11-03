@@ -17,14 +17,14 @@ class _FoodOrderPageState extends State<FoodOrderPage> {
           elevation: 0,
           leading: IconButton(
             icon: Icon(
-              Icons.arrow_back_ios,
+              Icons.arrow_back,
               color: Color(0xFF3a3737),
             ),
             onPressed: () => Navigator.of(context).pop(),
           ),
           title: Center(
             child: Text(
-              "Item Carts",
+              "Cart Items",
               style: TextStyle(
                   color: Color(0xFF3a3737),
                   fontWeight: FontWeight.w600,
@@ -59,7 +59,7 @@ class _FoodOrderPageState extends State<FoodOrderPage> {
                 ),
                 CartItem(
                     productName: "Grilled Salmon",
-                    productPrice: "\$96.00",
+                    productPrice: "Ksh 96.00",
                     productImage: "ic_popular_food_1",
                     productCartQuantity: "2"),
                 SizedBox(
@@ -67,7 +67,7 @@ class _FoodOrderPageState extends State<FoodOrderPage> {
                 ),
                 CartItem(
                     productName: "Meat vegetable",
-                    productPrice: "\$65.08",
+                    productPrice: "Ksh 65.08",
                     productImage: "ic_popular_food_4",
                     productCartQuantity: "5"),
                 SizedBox(
@@ -106,52 +106,152 @@ class _FoodOrderPageState extends State<FoodOrderPage> {
 class PaymentMethodWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      width: double.infinity,
-      height: 60,
-      decoration: BoxDecoration(boxShadow: [
-        BoxShadow(
-          color: Color(0xFFfae3e2).withOpacity(0.1),
-          spreadRadius: 1,
-          blurRadius: 1,
-          offset: Offset(0, 1),
-        ),
-      ]),
-      child: Card(
-        color: Colors.white,
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: const BorderRadius.all(
-            Radius.circular(5.0),
-          ),
-        ),
-        child: Container(
-          alignment: Alignment.center,
-          padding: EdgeInsets.only(left: 10, right: 30, top: 10, bottom: 10),
-          child: Row(
-            children: <Widget>[
-              Container(
-                alignment: Alignment.center,
-                child: Image.asset(
-                  "/icons/ic_credit_card.png",
-                  width: 50,
-                  height: 50,
+    return PaymentMethodsBuilder();
+  }
+}
+
+class PaymentMethodsBuilder extends StatelessWidget {
+  const PaymentMethodsBuilder({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+        children: <Widget>[
+          Container(
+            alignment: Alignment.center,
+            width: double.infinity,
+            height: 60,
+            decoration: BoxDecoration(boxShadow: [
+              BoxShadow(
+                color: Color(0xFFfae3e2).withOpacity(0.1),
+                spreadRadius: 1,
+                blurRadius: 1,
+                offset: Offset(0, 1),
+              ),
+            ]),
+            child: Card(
+              color: Colors.white,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(5.0),
                 ),
               ),
-              Text(
-                "Credit/Debit Card",
-                style: TextStyle(
-                    fontSize: 16,
-                    color: Color(0xFF3a3a3b),
-                    fontWeight: FontWeight.w400),
-                textAlign: TextAlign.left,
-              )
-            ],
-          ),
-        ),
-      ),
-    );
+              child: Container(
+                alignment: Alignment.center,
+                padding: EdgeInsets.only(left: 10, right: 30, top: 10, bottom: 10),
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.center,
+                      child: Image.asset(
+                        "/icons/ic_credit_card.png",
+                        width: 50,
+                        height: 50,
+                      ),
+                    ),
+                    Text(
+                      "Credit/Debit Card",
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Color(0xFF3a3a3b),
+                          fontWeight: FontWeight.w400),
+                      textAlign: TextAlign.left,
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),Container(
+            alignment: Alignment.center,
+            width: double.infinity,
+            height: 60,
+            decoration: BoxDecoration(boxShadow: [
+              BoxShadow(
+                color: Color(0xFFfae3e2).withOpacity(0.1),
+                spreadRadius: 1,
+                blurRadius: 1,
+                offset: Offset(0, 1),
+              ),
+            ]),
+            child: Card(
+              color: Colors.white,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(5.0),
+                ),
+              ),
+              child: Container(
+                alignment: Alignment.center,
+                padding: EdgeInsets.only(left: 10, right: 30, top: 10, bottom: 10),
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.center,
+                      child: Image.asset(
+                        "/icons/ic_mpesa.png",
+                        width: 50,
+                        height: 50,
+                      ),
+                    ),
+                    Text(
+                      "Mpesa",
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Color(0xFF3a3a3b),
+                          fontWeight: FontWeight.w400),
+                      textAlign: TextAlign.left,
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),Container(
+              alignment: Alignment.center,
+              width: double.infinity,
+              height: 60,
+              decoration: BoxDecoration(boxShadow: [
+                BoxShadow(
+                  color: Color(0xFFfae3e2).withOpacity(0.1),
+                  spreadRadius: 1,
+                  blurRadius: 1,
+                  offset: Offset(0, 1),
+                ),
+              ]),
+              child: Card(
+                  color: Colors.white,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(5.0),
+                    ),
+                  ),
+                  child: Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(left: 10, right: 30, top: 10, bottom: 10),
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          alignment: Alignment.center,
+                          child: Image.asset(
+                            "/icons/ic_cash_on_delivery.png",
+                            width: 50,
+                            height: 50,
+                          ),
+                        ),
+                        Text(
+                          "Cash on Delivery",
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Color(0xFF3a3a3b),
+                              fontWeight: FontWeight.w400),
+                          textAlign: TextAlign.left,
+                        )
+                      ],
+                    ),
+                  )
+              ))]);
   }
 }
 
@@ -198,7 +298,7 @@ class TotalCalculationWidget extends StatelessWidget {
                     textAlign: TextAlign.left,
                   ),
                   Text(
-                    "\$192",
+                    "Ksh 192",
                     style: TextStyle(
                         fontSize: 18,
                         color: Color(0xFF3a3a3b),
@@ -222,7 +322,7 @@ class TotalCalculationWidget extends StatelessWidget {
                     textAlign: TextAlign.left,
                   ),
                   Text(
-                    "\$102",
+                    "Ksh 102",
                     style: TextStyle(
                         fontSize: 18,
                         color: Color(0xFF3a3a3b),
@@ -246,7 +346,7 @@ class TotalCalculationWidget extends StatelessWidget {
                     textAlign: TextAlign.left,
                   ),
                   Text(
-                    "\$292",
+                    "Ksh 292",
                     style: TextStyle(
                         fontSize: 18,
                         color: Color(0xFF3a3a3b),
@@ -291,7 +391,7 @@ class PromoCodeWidget extends StatelessWidget {
               suffixIcon: IconButton(
                   icon: Icon(
                     Icons.local_offer,
-                    color: Color(0xFFfd2c2c),
+                    color: Color(0xFFfd5352),
                   ),
                   onPressed: () {
                     debugPrint('222');
@@ -428,7 +528,7 @@ class CartIconWithBadge extends StatelessWidget {
       children: <Widget>[
         IconButton(
             icon: Icon(
-              Icons.business_center,
+              Icons.shopping_cart,
               color: Color(0xFF3a3737),
             ),
             onPressed: () {}),
@@ -449,7 +549,7 @@ class CartIconWithBadge extends StatelessWidget {
                   child: Text(
                     '$counter',
                     style: TextStyle(
-                      color: Colors.red,
+                      color: Color(0xFFfd5352),
                       fontSize: 8,
                     ),
                     textAlign: TextAlign.center,
@@ -485,7 +585,7 @@ class AddToCartMenu extends StatelessWidget {
               width: 100.0,
               height: 35.0,
               decoration: BoxDecoration(
-                color: Color(0xFFfd2c2c),
+                color: Color(0xFFfd5352),
                 border: Border.all(color: Colors.white, width: 2.0),
                 borderRadius: BorderRadius.circular(5.0),
               ),
@@ -503,7 +603,7 @@ class AddToCartMenu extends StatelessWidget {
           IconButton(
             onPressed: () {},
             icon: Icon(Icons.add),
-            color: Color(0xFFfd2c2c),
+            color: Color(0xFFfd5352),
             iconSize: 18,
           ),
         ],
