@@ -31,7 +31,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
           actions: <Widget>[
             IconButton(
                 icon: Icon(
-                  Icons.business_center,
+                  Icons.shopping_cart,
                   color: Color(0xFF3a3737),
                 ),
                 onPressed: () {
@@ -69,7 +69,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
 
               FoodTitleWidget(
                   productName: "Grilled Salmon",
-                  productPrice: "\$96.00",
+                  productPrice: "Ksh 96.00",
                   productHost: "pizza hut"),
               SizedBox(
                 height: 15,
@@ -78,47 +78,15 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
               SizedBox(
                 height: 15,
               ),
-              PreferredSize(
-                preferredSize: Size.fromHeight(50.0),
-                child: TabBar(
-                  labelColor: Color(0xFFfd3f40),
-                  indicatorColor: Color(0xFFfd3f40),
-                  unselectedLabelColor: Color(0xFFa4a1a1),
-                  indicatorSize: TabBarIndicatorSize.label,
-                  labelStyle: TextStyle(
-                    fontWeight: FontWeight.w500,
-                  ),
-                  tabs: [
-                    Tab(
-                      text: 'Food Details',
-                    ),
-                    Tab(
-                      text: 'Food Reviews',
-                    ),
-                  ], // list of tabs
-                ),
-              ),
               Container(
-                height: 150,
-                child: TabBarView(
-                  children: [
-                    Container(
-                      color: Colors.white24,
-                      child: DetailContentMenu(),
-                    ),
-                    Container(
-                      color: Colors.white24,
-                      child: DetailContentMenu(),
+                    color: Colors.white24,
+                    child: DetailContentMenu(),
                     ), // class name
                   ],
                 ),
               ),
-              BottomMenu(),
-            ],
           ),
-        ),
-      ),
-    );
+        );
   }
 }
 
@@ -183,96 +151,6 @@ class FoodTitleWidget extends StatelessWidget {
   }
 }
 
-class BottomMenu extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          Column(
-            children: <Widget>[
-              Icon(
-                Icons.timelapse,
-                color: Color(0xFF404aff),
-                size: 35,
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Text(
-                "12pm-3pm",
-                style: TextStyle(
-                    fontSize: 14,
-                    color: Color(0xFFa9a9a9),
-                    fontWeight: FontWeight.w300),
-              )
-            ],
-          ),
-          Column(
-            children: <Widget>[
-              Icon(
-                Icons.directions,
-                color: Color(0xFF23c58a),
-                size: 35,
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Text(
-                "3.5 km",
-                style: TextStyle(
-                    fontSize: 14,
-                    color: Color(0xFFa9a9a9),
-                    fontWeight: FontWeight.w300),
-              )
-            ],
-          ),
-          Column(
-            children: <Widget>[
-              Icon(
-                Icons.map,
-                color: Color(0xFFff0654),
-                size: 35,
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Text(
-                "Map View",
-                style: TextStyle(
-                    fontSize: 14,
-                    color: Color(0xFFa9a9a9),
-                    fontWeight: FontWeight.w300),
-              )
-            ],
-          ),
-          Column(
-            children: <Widget>[
-              Icon(
-                Icons.directions_bike,
-                color: Color(0xFFe95959),
-                size: 35,
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Text(
-                "Delivery",
-                style: TextStyle(
-                    fontSize: 14,
-                    color: Color(0xFFa9a9a9),
-                    fontWeight: FontWeight.w300),
-              )
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class AddToCartMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -294,13 +172,13 @@ class AddToCartMenu extends StatelessWidget {
               width: 200.0,
               height: 45.0,
               decoration: new BoxDecoration(
-                color: Color(0xFFfd2c2c),
+                color: Color(0xFFfd5352),
                 border: Border.all(color: Colors.white, width: 2.0),
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Center(
                 child: Text(
-                  'Add To Bag',
+                  'Add To Cart',
                   style: new TextStyle(
                       fontSize: 18.0,
                       color: Colors.white,
@@ -312,7 +190,7 @@ class AddToCartMenu extends StatelessWidget {
           IconButton(
             onPressed: () {},
             icon: Icon(Icons.add),
-            color: Color(0xFFfd2c2c),
+            color: Color(0xFFfd5352),
             iconSize: 30,
           ),
         ],
