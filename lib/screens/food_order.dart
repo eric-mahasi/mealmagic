@@ -391,7 +391,7 @@ class PromoCodeWidget extends StatelessWidget {
               suffixIcon: IconButton(
                   icon: Icon(
                     Icons.local_offer,
-                    color: Color(0xFFfd5352),
+                    color: Color(0xfff47a5a),
                   ),
                   onPressed: () {
                     debugPrint('222');
@@ -549,7 +549,7 @@ class CartIconWithBadge extends StatelessWidget {
                   child: Text(
                     '$counter',
                     style: TextStyle(
-                      color: Color(0xFFfd5352),
+                      color: Color(0xfff47a5a),
                       fontSize: 8,
                     ),
                     textAlign: TextAlign.center,
@@ -585,7 +585,7 @@ class AddToCartMenu extends StatelessWidget {
               width: 100.0,
               height: 35.0,
               decoration: BoxDecoration(
-                color: Color(0xFFfd5352),
+                color: Color(0xfff47a5a),
                 border: Border.all(color: Colors.white, width: 2.0),
                 borderRadius: BorderRadius.circular(5.0),
               ),
@@ -603,7 +603,7 @@ class AddToCartMenu extends StatelessWidget {
           IconButton(
             onPressed: () {},
             icon: Icon(Icons.add),
-            color: Color(0xFFfd5352),
+            color: Color(0xfff47a5a),
             iconSize: 18,
           ),
         ],
