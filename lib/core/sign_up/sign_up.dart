@@ -121,7 +121,7 @@ class SignUpPage extends StatelessWidget {
                       ),
                       filled: true,
                       prefixIcon: Icon(
-                        Icons.phone,
+                        Icons.email,
                         color: Color(0xFF666666),
                         size: defaultIconSize,
                       ),
@@ -130,7 +130,7 @@ class SignUpPage extends StatelessWidget {
                           color: Color(0xFF666666),
                           fontFamily: defaultFontFamily,
                           fontSize: defaultFontSize),
-                      hintText: "Phone Number",
+                      hintText: "Email",
                     ),
                   ),
                   SizedBox(
@@ -138,6 +138,7 @@ class SignUpPage extends StatelessWidget {
                   ),
                   TextField(
                     showCursor: true,
+                    obscureText: true,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -148,7 +149,7 @@ class SignUpPage extends StatelessWidget {
                       ),
                       filled: true,
                       prefixIcon: Icon(
-                        Icons.code,
+                        Icons.lock_outline,
                         color: Color(0xFF666666),
                         size: defaultIconSize,
                       ),
@@ -158,33 +159,12 @@ class SignUpPage extends StatelessWidget {
                         fontFamily: defaultFontFamily,
                         fontSize: defaultFontSize,
                       ),
-                      hintText: "Invitation Code",
+                      hintText: "Password",
                     ),
                   ),
                   SizedBox(
                     height: 10,
                   ),
-                  Container(
-                      width: double.infinity,
-                      child: Row(
-                        children: <Widget>[
-                          Icon(
-                            Icons.info_outline,
-                            color: Color(0xFF666666),
-                            size: defaultIconSize,
-                          ),
-                          Text(
-                            " Leave empty if you don't have Invitation Code",
-                            style: TextStyle(
-                              color: Color(0xFF666666),
-                              fontFamily: defaultFontFamily,
-                              fontSize: defaultFontSize,
-                              fontStyle: FontStyle.normal,
-                            ),
-                            textAlign: TextAlign.left,
-                          ),
-                        ],
-                      )),
                   SizedBox(
                     height: 15,
                   ),
