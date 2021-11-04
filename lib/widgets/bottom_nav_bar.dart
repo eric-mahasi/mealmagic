@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mealmagic/animation/scale_route.dart';
+import 'package:mealmagic/screens/food_order.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BottomNavBarWidget extends StatefulWidget {
@@ -13,7 +15,11 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
     void _onItemTapped(int index) {
       setState(() {
         _selectedIndex = index;
-//        navigateToScreens(index);
+        switch(index) {
+          case 2:
+            Navigator.push(context, ScaleRoute(page: FoodOrderPage()));
+            break;
+        }
       });
     }
 
