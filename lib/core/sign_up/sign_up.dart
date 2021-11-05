@@ -1,11 +1,24 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mealmagic/animation/scale_route.dart';
 import 'package:mealmagic/core/sign_in/sign_in.dart';
+import 'package:mealmagic/screens/home_page.dart';
 import 'package:mealmagic/widgets/sign_up_button.dart';
 
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
+
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  late bool _success;
+  late String _userEmail;
 
   @override
   Widget build(BuildContext context) {
@@ -36,145 +49,175 @@ class SignUpPage extends StatelessWidget {
               ),
             ),
             Flexible(
-              flex: 15,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    width: 300,
-                    height: 300,
-                    alignment: Alignment.center,
-                    child: Image.asset(
-                      "assets/images/doorstep-delivery.jpg",
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Row(
+                flex: 15,
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Flexible(
-                        flex: 1,
-                        child: TextField(
-                          showCursor: true,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
-                              borderSide: BorderSide(
-                                width: 0,
-                                style: BorderStyle.none,
-                              ),
-                            ),
-                            filled: true,
-                            fillColor: Color(0xFFF2F3F5),
-                            hintStyle: TextStyle(
-                              color: Color(0xFF666666),
-                              fontFamily: defaultFontFamily,
-                              fontSize: defaultFontSize,
-                            ),
-                            hintText: "First Name",
-                          ),
+                      Container(
+                        width: 300,
+                        height: 300,
+                        alignment: Alignment.center,
+                        child: Image.asset(
+                          "assets/images/doorstep-delivery.jpg",
                         ),
                       ),
                       SizedBox(
-                        width: 10,
+                        height: 15,
                       ),
-                      Flexible(
-                        flex: 1,
-                        child: TextField(
-                          showCursor: true,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius:
+                      Row(
+                        children: <Widget>[
+                          Flexible(
+                            flex: 1,
+                            child: TextField(
+                              showCursor: true,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius:
                                   BorderRadius.all(Radius.circular(10.0)),
-                              borderSide: BorderSide(
-                                width: 0,
-                                style: BorderStyle.none,
+                                  borderSide: BorderSide(
+                                    width: 0,
+                                    style: BorderStyle.none,
+                                  ),
+                                ),
+                                filled: true,
+                                fillColor: Color(0xFFF2F3F5),
+                                hintStyle: TextStyle(
+                                  color: Color(0xFF666666),
+                                  fontFamily: defaultFontFamily,
+                                  fontSize: defaultFontSize,
+                                ),
+                                hintText: "First Name",
                               ),
                             ),
-                            filled: true,
-                            fillColor: Color(0xFFF2F3F5),
-                            hintStyle: TextStyle(
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Flexible(
+                            flex: 1,
+                            child: TextField(
+                              showCursor: true,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
+                                  borderSide: BorderSide(
+                                    width: 0,
+                                    style: BorderStyle.none,
+                                  ),
+                                ),
+                                filled: true,
+                                fillColor: Color(0xFFF2F3F5),
+                                hintStyle: TextStyle(
+                                  color: Color(0xFF666666),
+                                  fontFamily: defaultFontFamily,
+                                  fontSize: defaultFontSize,
+                                ),
+                                hintText: "Last Name",
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      TextFormField(
+                        controller: _emailController,
+                        showCursor: true,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(
+                                10.0)),
+                            borderSide: BorderSide(
+                              width: 0,
+                              style: BorderStyle.none,
+                            ),
+                          ),
+                          filled: true,
+                          prefixIcon: Icon(
+                            Icons.email,
+                            color: Color(0xFF666666),
+                            size: defaultIconSize,
+                          ),
+                          fillColor: Color(0xFFF2F3F5),
+                          hintStyle: TextStyle(
                               color: Color(0xFF666666),
                               fontFamily: defaultFontFamily,
-                              fontSize: defaultFontSize,
-                            ),
-                            hintText: "Last Name",
-                          ),
+                              fontSize: defaultFontSize),
+                          hintText: "Email",
                         ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      TextFormField(
+                        showCursor: true,
+                        controller: _passwordController,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(
+                                10.0)),
+                            borderSide: BorderSide(
+                              width: 0,
+                              style: BorderStyle.none,
+                            ),
+                          ),
+                          filled: true,
+                          prefixIcon: Icon(
+                            Icons.lock_outline,
+                            color: Color(0xFF666666),
+                            size: defaultIconSize,
+                          ),
+                          fillColor: Color(0xFFF2F3F5),
+                          hintStyle: TextStyle(
+                            color: Color(0xFF666666),
+                            fontFamily: defaultFontFamily,
+                            fontSize: defaultFontSize,
+                          ),
+                          hintText: "Password",
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Container(
+                        width: double.infinity,
+                        child: MaterialButton(
+                            color: Color(0xfff47a5a),
+                            //shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                            child: Padding(
+                              padding:
+                              const EdgeInsets.symmetric(vertical: 10.0,
+                                  horizontal: 42.0),
+                              child: Text(
+                                "SIGN UP",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 25.0,
+                                    fontFamily: "WorkSansBold"),
+                              ),
+                            ),
+                            onPressed: () async {
+                              if (_formKey.currentState!.validate()) {
+                                _register();
+                              }
+                              Navigator.push(context,
+                                  ScaleRoute(page: HomePage()));
+                            }),
+                      ),
+                      SizedBox(
+                        height: 10,
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  TextField(
-                    showCursor: true,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        borderSide: BorderSide(
-                          width: 0,
-                          style: BorderStyle.none,
-                        ),
-                      ),
-                      filled: true,
-                      prefixIcon: Icon(
-                        Icons.email,
-                        color: Color(0xFF666666),
-                        size: defaultIconSize,
-                      ),
-                      fillColor: Color(0xFFF2F3F5),
-                      hintStyle: TextStyle(
-                          color: Color(0xFF666666),
-                          fontFamily: defaultFontFamily,
-                          fontSize: defaultFontSize),
-                      hintText: "Email",
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  TextField(
-                    showCursor: true,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        borderSide: BorderSide(
-                          width: 0,
-                          style: BorderStyle.none,
-                        ),
-                      ),
-                      filled: true,
-                      prefixIcon: Icon(
-                        Icons.lock_outline,
-                        color: Color(0xFF666666),
-                        size: defaultIconSize,
-                      ),
-                      fillColor: Color(0xFFF2F3F5),
-                      hintStyle: TextStyle(
-                        color: Color(0xFF666666),
-                        fontFamily: defaultFontFamily,
-                        fontSize: defaultFontSize,
-                      ),
-                      hintText: "Password",
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  SignUpButtonWidget(),
-                  SizedBox(
-                    height: 10,
-                  ),
-                ],
-              ),
-            ),
+                )),
             Flexible(
               flex: 1,
               child: Align(
@@ -219,5 +262,30 @@ class SignUpPage extends StatelessWidget {
       ),
     );
   }
-}
 
+  void _register() async {
+    final FirebaseUser user = (await
+      FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: _emailController.text,
+      password: _passwordController.text,
+    )
+    ).user;
+    if (user != null) {
+      setState(() {
+        _success = true;
+        _userEmail = user.email;
+      });
+    } else {
+      setState(() {
+        _success = true;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+}
