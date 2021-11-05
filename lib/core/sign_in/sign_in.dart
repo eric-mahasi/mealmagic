@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:mealmagic/animation/scale_route.dart';
 import 'package:mealmagic/core/sign_up/sign_up.dart';
+import 'package:mealmagic/screens/home_page.dart';
 import 'package:mealmagic/widgets/sign_in_button.dart';
 
 class SignInPage extends StatefulWidget {
@@ -12,6 +14,11 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  late bool _success;
+  late String _userEmail;
   @override
   Widget build(BuildContext context) {
     String defaultFontFamily = 'Roboto-Light.ttf';
@@ -42,7 +49,10 @@ class _SignInPageState extends State<SignInPage> {
             ),
             Flexible(
               flex: 8,
-              child: Column(
+              child:
+              Form(
+                  key: _formKey,
+                child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
@@ -56,8 +66,15 @@ class _SignInPageState extends State<SignInPage> {
                   SizedBox(
                     height: 15,
                   ),
-                  TextField(
+                  TextFormField(
                     showCursor: true,
+                    controller: _emailController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter an email';
+                      }
+                      return null;
+                    },
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -83,8 +100,15 @@ class _SignInPageState extends State<SignInPage> {
                   SizedBox(
                     height: 15,
                   ),
-                  TextField(
+                  TextFormField(
                     showCursor: true,
+                    controller: _passwordController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter a password';
+                      }
+                      return null;
+                    },
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -133,12 +157,34 @@ class _SignInPageState extends State<SignInPage> {
                   SizedBox(
                     height: 15,
                   ),
-                  SignInButtonWidget(),
+                Container(
+                  width: double.infinity,
+                  child: MaterialButton(
+                      color: Color(0xfff47a5a),
+                      //shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                      child: Padding(
+                        padding:
+                        const EdgeInsets.symmetric(vertical: 10.0, horizontal: 42.0),
+                        child: Text(
+                          "SIGN IN",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 25.0,
+                              fontFamily: "WorkSansBold"),
+                        ),
+                      ),
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          _signInWithEmailAndPassword();
+                        }
+                        Navigator.push(context, ScaleRoute(page: HomePage()));
+                      }),
+                ),
                   SizedBox(
                     height: 2,
                   ),
                 ],
-              ),
+                )),
             ),
             Flexible(
               flex: 1,
@@ -183,5 +229,29 @@ class _SignInPageState extends State<SignInPage> {
         ),
       ),
     );
+  }
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void _signInWithEmailAndPassword() async {
+    final FirebaseUser user = (await FirebaseAuth.instance.signInWithEmailAndPassword(
+    email: _emailController.text,
+    password: _passwordController.text,
+    )).user;
+
+    if (user != null) {
+    setState(() {
+    _success = true;
+    _userEmail = user.email;
+    });
+    } else {
+    setState(() {
+    _success = false;
+    });
+    }
   }
 }
