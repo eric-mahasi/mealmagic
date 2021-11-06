@@ -19,6 +19,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _passwordController = TextEditingController();
   late bool _success;
   late String _userEmail;
+  bool _isObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -156,7 +157,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       TextFormField(
                         showCursor: true,
                         controller: _passwordController,
-                        obscureText: true,
+                        obscureText: _isObscure,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(
@@ -171,6 +172,16 @@ class _SignUpPageState extends State<SignUpPage> {
                             Icons.lock_outline,
                             color: Color(0xFF666666),
                             size: defaultIconSize,
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                            _isObscure ? Icons.visibility : Icons.visibility_off),
+                            color: Color(0xfff47a5a),
+                            onPressed: () {
+                            setState(() {
+                            _isObscure = !_isObscure;
+                            });
+                            }
                           ),
                           fillColor: Color(0xFFF2F3F5),
                           hintStyle: TextStyle(

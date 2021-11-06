@@ -20,6 +20,9 @@ class _SignInPageState extends State<SignInPage> {
   final TextEditingController _passwordController = TextEditingController();
   late bool _success;
   late String _userEmail;
+  bool _isObscure = true;
+
+
   @override
   Widget build(BuildContext context) {
     String defaultFontFamily = 'Roboto-Light.ttf';
@@ -124,10 +127,15 @@ class _SignInPageState extends State<SignInPage> {
                         color: Color(0xFF666666),
                         size: defaultIconSize,
                       ),
-                      suffixIcon: Icon(
-                        Icons.remove_red_eye,
-                        color: Color(0xFF666666),
-                        size: defaultIconSize,
+                      suffixIcon: IconButton(
+                          icon: Icon(
+                              _isObscure ? Icons.visibility : Icons.visibility_off),
+                          color: Color(0xfff47a5a),
+                          onPressed: () {
+                            setState(() {
+                              _isObscure = !_isObscure;
+                            });
+                          }
                       ),
                       fillColor: Color(0xFFF2F3F5),
                       hintStyle: TextStyle(
@@ -137,7 +145,7 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                       hintText: "Password",
                     ),
-                    obscureText: true,
+                    obscureText: _isObscure,
                   ),
                   SizedBox(
                     height: 15,
