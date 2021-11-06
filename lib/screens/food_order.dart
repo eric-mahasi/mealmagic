@@ -440,7 +440,10 @@ class CartItem extends StatelessWidget {
           child: Container(
             alignment: Alignment.center,
             padding: EdgeInsets.only(left: 5, right: 5, top: 10, bottom: 10),
-            child: Row(
+
+            child: SingleChildScrollView(
+    scrollDirection: Axis.horizontal,
+    child: Row(
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 Container(
@@ -515,7 +518,7 @@ class CartItem extends StatelessWidget {
               ],
             ),
           )),
-    );
+    ));
   }
 }
 

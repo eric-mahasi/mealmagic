@@ -56,10 +56,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Container(
-                        width: 300,
-                        height: 300,
-                        alignment: Alignment.center,
+                      Expanded(
                         child: Image.asset(
                           "assets/images/doorstep-delivery.jpg",
                         ),
