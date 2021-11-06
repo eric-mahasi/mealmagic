@@ -4,6 +4,8 @@ import 'package:mealmagic/screens/food_order.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BottomNavBarWidget extends StatefulWidget {
+  const BottomNavBarWidget({Key? key}) : super(key: key);
+
   @override
   _BottomNavBarWidgetState createState() => _BottomNavBarWidgetState();
 }
@@ -17,7 +19,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
         _selectedIndex = index;
         switch(index) {
           case 2:
-            Navigator.push(context, ScaleRoute(page: FoodOrderPage()));
+            Navigator.push(context, ScaleRoute(page: const FoodOrderPage()));
             break;
         }
       });
@@ -28,35 +30,29 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
-          title: Text(
+          label:
             'Home',
-            style: TextStyle(color: Color(0xFF2c2b2b)),
-          ),
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.assignment),
-          title: Text(
-            'Orders',
-            style: TextStyle(color: Color(0xff2c2b2b)),
+          label:
+            'Orders'
           ),
-        ),
         BottomNavigationBarItem(
           icon: Icon(Icons.shopping_cart),
-          title: Text(
+          label:
             'Cart',
-            style: TextStyle(color: Color(0xFF2c2b2b)),
-          ),
+
         ),
         BottomNavigationBarItem(
           icon: Icon(FontAwesomeIcons.user),
-          title: Text(
+          label:
             'Account',
-            style: TextStyle(color: Color(0xFF2c2b2b)),
-          ),
+
         ),
       ],
       currentIndex: _selectedIndex,
-      selectedItemColor: Color(0xfff47a5a),
+      selectedItemColor: const Color(0xfff47a5a),
       onTap: _onItemTapped,
     );
   }

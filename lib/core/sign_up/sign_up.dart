@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:mealmagic/animation/scale_route.dart';
 import 'package:mealmagic/core/sign_in/sign_in.dart';
 import 'package:mealmagic/screens/home_page.dart';
-import 'package:mealmagic/widgets/sign_up_button.dart';
 
 
 class SignUpPage extends StatefulWidget {
@@ -29,7 +28,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.only(left: 20, right: 20, top: 35, bottom: 30),
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 35, bottom: 30),
         width: double.infinity,
         height: double.infinity,
         color: Colors.white70,
@@ -38,11 +37,9 @@ class _SignUpPageState extends State<SignUpPage> {
             Flexible(
               flex: 1,
               child: InkWell(
-                child: Container(
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Icon(Icons.close),
-                  ),
+                child: const Align(
+                  alignment: Alignment.topLeft,
+                  child: Icon(Icons.close),
                 ),
                 onTap: () {
                   Navigator.pop(context);
@@ -61,7 +58,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           "assets/images/doorstep-delivery.jpg",
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       Row(
@@ -71,7 +68,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             child: TextField(
                               showCursor: true,
                               decoration: InputDecoration(
-                                border: OutlineInputBorder(
+                                border: const OutlineInputBorder(
                                   borderRadius:
                                   BorderRadius.all(Radius.circular(10.0)),
                                   borderSide: BorderSide(
@@ -80,9 +77,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                   ),
                                 ),
                                 filled: true,
-                                fillColor: Color(0xFFF2F3F5),
+                                fillColor: const Color(0xFFF2F3F5),
                                 hintStyle: TextStyle(
-                                  color: Color(0xFF666666),
+                                  color: const Color(0xFF666666),
                                   fontFamily: defaultFontFamily,
                                   fontSize: defaultFontSize,
                                 ),
@@ -90,7 +87,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Flexible(
@@ -98,7 +95,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             child: TextField(
                               showCursor: true,
                               decoration: InputDecoration(
-                                border: OutlineInputBorder(
+                                border: const OutlineInputBorder(
                                   borderRadius:
                                   BorderRadius.all(Radius.circular(10.0)),
                                   borderSide: BorderSide(
@@ -107,9 +104,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                   ),
                                 ),
                                 filled: true,
-                                fillColor: Color(0xFFF2F3F5),
+                                fillColor: const Color(0xFFF2F3F5),
                                 hintStyle: TextStyle(
-                                  color: Color(0xFF666666),
+                                  color: const Color(0xFF666666),
                                   fontFamily: defaultFontFamily,
                                   fontSize: defaultFontSize,
                                 ),
@@ -119,14 +116,14 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       TextFormField(
                         controller: _emailController,
                         showCursor: true,
                         decoration: InputDecoration(
-                          border: OutlineInputBorder(
+                          border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(
                                 10.0)),
                             borderSide: BorderSide(
@@ -137,18 +134,18 @@ class _SignUpPageState extends State<SignUpPage> {
                           filled: true,
                           prefixIcon: Icon(
                             Icons.email,
-                            color: Color(0xFF666666),
+                            color: const Color(0xFF666666),
                             size: defaultIconSize,
                           ),
-                          fillColor: Color(0xFFF2F3F5),
+                          fillColor: const Color(0xFFF2F3F5),
                           hintStyle: TextStyle(
-                              color: Color(0xFF666666),
+                              color: const Color(0xFF666666),
                               fontFamily: defaultFontFamily,
                               fontSize: defaultFontSize),
                           hintText: "Email",
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       TextFormField(
@@ -156,7 +153,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         controller: _passwordController,
                         obscureText: _isObscure,
                         decoration: InputDecoration(
-                          border: OutlineInputBorder(
+                          border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(
                                 10.0)),
                             borderSide: BorderSide(
@@ -167,42 +164,42 @@ class _SignUpPageState extends State<SignUpPage> {
                           filled: true,
                           prefixIcon: Icon(
                             Icons.lock_outline,
-                            color: Color(0xFF666666),
+                            color: const Color(0xFF666666),
                             size: defaultIconSize,
                           ),
                           suffixIcon: IconButton(
                             icon: Icon(
                             _isObscure ? Icons.visibility : Icons.visibility_off),
-                            color: Color(0xfff47a5a),
+                            color: const Color(0xfff47a5a),
                             onPressed: () {
                             setState(() {
                             _isObscure = !_isObscure;
                             });
                             }
                           ),
-                          fillColor: Color(0xFFF2F3F5),
+                          fillColor: const Color(0xFFF2F3F5),
                           hintStyle: TextStyle(
-                            color: Color(0xFF666666),
+                            color: const Color(0xFF666666),
                             fontFamily: defaultFontFamily,
                             fontSize: defaultFontSize,
                           ),
                           hintText: "Password",
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
-                      Container(
+                      SizedBox(
                         width: double.infinity,
                         child: MaterialButton(
-                            color: Color(0xfff47a5a),
+                            color: const Color(0xfff47a5a),
                             //shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
-                            child: Padding(
+                            child: const Padding(
                               padding:
-                              const EdgeInsets.symmetric(vertical: 10.0,
+                              EdgeInsets.symmetric(vertical: 10.0,
                                   horizontal: 42.0),
                               child: Text(
                                 "SIGN UP",
@@ -220,7 +217,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   ScaleRoute(page: HomePage()));
                             }),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                     ],
@@ -234,30 +231,26 @@ class _SignUpPageState extends State<SignUpPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Container(
-                      child: Text(
-                        "Already have an account? ",
-                        style: TextStyle(
-                          color: Color(0xFF666666),
-                          fontFamily: defaultFontFamily,
-                          fontSize: defaultFontSize,
-                          fontStyle: FontStyle.normal,
-                        ),
+                    Text(
+                      "Already have an account? ",
+                      style: TextStyle(
+                        color: const Color(0xFF666666),
+                        fontFamily: defaultFontFamily,
+                        fontSize: defaultFontSize,
+                        fontStyle: FontStyle.normal,
                       ),
                     ),
                     InkWell(
                       onTap: () {
-                        Navigator.push(context, ScaleRoute(page: SignInPage()));
+                        Navigator.push(context, ScaleRoute(page: const SignInPage()));
                       },
-                      child: Container(
-                        child: Text(
-                          "Sign In",
-                          style: TextStyle(
-                            color: Color(0xfff47a5a),
-                            fontFamily: defaultFontFamily,
-                            fontSize: defaultFontSize,
-                            fontStyle: FontStyle.normal,
-                          ),
+                      child: Text(
+                        "Sign In",
+                        style: TextStyle(
+                          color: const Color(0xfff47a5a),
+                          fontFamily: defaultFontFamily,
+                          fontSize: defaultFontSize,
+                          fontStyle: FontStyle.normal,
                         ),
                       ),
                     ),

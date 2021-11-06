@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mealmagic/animation/scale_route.dart';
 import 'package:mealmagic/screens/food_order.dart';
-import 'package:mealmagic/widgets/food_details_slider.dart';
 
 class FoodDetailsPage extends StatefulWidget {
   const FoodDetailsPage({Key? key}) : super(key: key);
@@ -18,19 +17,18 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Color(0xFFFAFAFA),
+          backgroundColor: const Color(0xFFFAFAFA),
           elevation: 0,
           leading: IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back,
               color: Color(0xFF3a3737),
             ),
             onPressed: () => Navigator.of(context).pop(),
           ),
-          brightness: Brightness.light,
           actions: <Widget>[
             IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.shopping_cart,
                   color: Color(0xFF3a3737),
                 ),
@@ -40,7 +38,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
           ],
         ),
         body: Container(
-          padding: EdgeInsets.only(
+          padding: const EdgeInsets.only(
             left: 15,
             right: 15,
           ),
@@ -51,13 +49,13 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                 semanticContainer: true,
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 child: Image.asset(
-                  'assets/images/best_foods/' + 'ic_best_food_8' + ".jpeg",
+                  'assets/images/best_foods/' 'ic_best_food_8' ".jpeg",
                 ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(3.0),
                 ),
                 elevation: 1,
-                margin: EdgeInsets.all(5),
+                margin: const EdgeInsets.all(5),
               ),
               /*  Container(
                 height: 150,
@@ -67,20 +65,20 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                     slideImage3: "assets/images/bestfood/ic_best_food_10.jpeg"),
               ),*/
 
-              FoodTitleWidget(
+              const FoodTitleWidget(
                   productName: "Grilled Salmon",
                   productPrice: "Ksh 96.00",
                   productHost: "pizza hut"),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
-              AddToCartMenu(),
-              SizedBox(
+              const AddToCartMenu(),
+              const SizedBox(
                 height: 15,
               ),
               Container(
                     color: Colors.white24,
-                    child: DetailContentMenu(),
+                    child: const DetailContentMenu(),
                     ), // class name
                   ],
                 ),
@@ -91,11 +89,11 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
 }
 
 class FoodTitleWidget extends StatelessWidget {
-  String productName;
-  String productPrice;
-  String productHost;
+  final String productName;
+  final String productPrice;
+  final String productHost;
 
-  FoodTitleWidget({
+  const FoodTitleWidget({
     Key? key,
     required this.productName,
     required this.productPrice,
@@ -111,26 +109,26 @@ class FoodTitleWidget extends StatelessWidget {
           children: <Widget>[
             Text(
               productName,
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 20,
                   color: Color(0xFF3a3a3b),
                   fontWeight: FontWeight.w500),
             ),
             Text(
               productPrice,
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 20,
                   color: Color(0xFF3a3a3b),
                   fontWeight: FontWeight.w500),
             ),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Row(
           children: <Widget>[
-            Text(
+            const Text(
               "by ",
               style: TextStyle(
                   fontSize: 16,
@@ -139,7 +137,7 @@ class FoodTitleWidget extends StatelessWidget {
             ),
             Text(
               productHost,
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 16,
                   color: Color(0xFF1f1f1f),
                   fontWeight: FontWeight.w400),
@@ -152,6 +150,8 @@ class FoodTitleWidget extends StatelessWidget {
 }
 
 class AddToCartMenu extends StatelessWidget {
+  const AddToCartMenu({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -160,7 +160,7 @@ class AddToCartMenu extends StatelessWidget {
         children: <Widget>[
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.remove),
+            icon: const Icon(Icons.remove),
             color: Colors.black,
             iconSize: 30,
           ),
@@ -171,15 +171,15 @@ class AddToCartMenu extends StatelessWidget {
             child: Container(
               width: 200.0,
               height: 45.0,
-              decoration: new BoxDecoration(
-                color: Color(0xfff47a5a),
+              decoration: BoxDecoration(
+                color: const Color(0xfff47a5a),
                 border: Border.all(color: Colors.white, width: 2.0),
                 borderRadius: BorderRadius.circular(10.0),
               ),
-              child: Center(
+              child: const Center(
                 child: Text(
                   'Add To Cart',
-                  style: new TextStyle(
+                  style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.white,
                       fontWeight: FontWeight.w400),
@@ -189,8 +189,8 @@ class AddToCartMenu extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.add),
-            color: Color(0xfff47a5a),
+            icon: const Icon(Icons.add),
+            color: const Color(0xfff47a5a),
             iconSize: 30,
           ),
         ],
@@ -200,18 +200,18 @@ class AddToCartMenu extends StatelessWidget {
 }
 
 class DetailContentMenu extends StatelessWidget {
+  const DetailContentMenu({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text(
-        'Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero\'s De Finibus Bonorum et Malorum for use in a type specimen book.',
-        style: TextStyle(
-            fontSize: 14.0,
-            color: Colors.black87,
-            fontWeight: FontWeight.w400,
-            height: 1.50),
-        textAlign: TextAlign.justify,
-      ),
+    return const Text(
+      'Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero\'s De Finibus Bonorum et Malorum for use in a type specimen book.',
+      style: TextStyle(
+          fontSize: 14.0,
+          color: Colors.black87,
+          fontWeight: FontWeight.w400,
+          height: 1.50),
+      textAlign: TextAlign.justify,
     );
   }
 }

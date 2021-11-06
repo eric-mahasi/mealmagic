@@ -8,6 +8,8 @@ import 'package:mealmagic/widgets/search.dart';
 
 
 class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -16,30 +18,29 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFFAFAFA),
+        backgroundColor: const Color(0xFFFAFAFA),
         elevation: 0,
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: Color(0xFF3a3737),
           ),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: Text(
+        title: const Text(
           "What would you like to eat?",
           style: TextStyle(
               color: Color(0xFF3a3737),
               fontSize: 18,
               fontWeight: FontWeight.bold),
         ),
-        brightness: Brightness.light,
         actions: <Widget>[
           IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.notifications_none,
                 color: Color(0xFF3a3737),
               ),
-              onPressed: () {Navigator.push(context, ScaleRoute(page: SignInPage()));})
+              onPressed: () {Navigator.push(context, ScaleRoute(page: const SignInPage()));})
         ],
       ),
       body: SingleChildScrollView(

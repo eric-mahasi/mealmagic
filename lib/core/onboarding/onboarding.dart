@@ -15,7 +15,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
   void _onIntroEnd(context) {
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => SignInPage()),
+      MaterialPageRoute(builder: (_) => const SignInPage()),
     );
   }
 
@@ -51,7 +51,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         height: 60,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            primary: Color(0xfff47a5a)
+            primary: const Color(0xfff47a5a)
           ),
           child: const Text(
             'Lets go right away!',

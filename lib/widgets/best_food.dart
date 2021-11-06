@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class BestFoodWidget extends StatefulWidget {
+  const BestFoodWidget({Key? key}) : super(key: key);
+
   @override
   _BestFoodWidgetState createState() => _BestFoodWidgetState();
 }
@@ -8,11 +10,11 @@ class BestFoodWidget extends StatefulWidget {
 class _BestFoodWidgetState extends State<BestFoodWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 400,
       width: double.infinity,
       child: Column(
-        children: <Widget>[
+        children: const <Widget>[
           BestFoodTitle(),
           Expanded(
             child: BestFoodList(),
@@ -24,13 +26,15 @@ class _BestFoodWidgetState extends State<BestFoodWidget> {
 }
 
 class BestFoodTitle extends StatelessWidget {
+  const BestFoodTitle({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
+        children: const <Widget>[
           Text(
             "Best Foods",
             style: TextStyle(
@@ -45,14 +49,14 @@ class BestFoodTitle extends StatelessWidget {
 }
 
 class BestFoodTiles extends StatelessWidget {
-  String name;
-  String imageUrl;
-  String rating;
-  String numberOfRating;
-  String price;
-  String slug;
+  final String name;
+  final String imageUrl;
+  final String rating;
+  final String numberOfRating;
+  final String price;
+  final String slug;
 
-  BestFoodTiles(
+  const BestFoodTiles(
       {Key? key,
         required this.name,
         required this.imageUrl,
@@ -69,8 +73,8 @@ class BestFoodTiles extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(left: 10, right: 5, top: 5, bottom: 5),
-            decoration: BoxDecoration(boxShadow: [
+            padding: const EdgeInsets.only(left: 10, right: 5, top: 5, bottom: 5),
+            decoration: const BoxDecoration(boxShadow: [
               /* BoxShadow(
                 color: Color(0xFFfae3e2),
                 blurRadius: 15.0,
@@ -87,7 +91,7 @@ class BestFoodTiles extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10.0),
               ),
               elevation: 1,
-              margin: EdgeInsets.all(5),
+              margin: const EdgeInsets.all(5),
             ),
           ),
         ],
@@ -97,10 +101,12 @@ class BestFoodTiles extends StatelessWidget {
 }
 
 class BestFoodList extends StatelessWidget {
+  const BestFoodList({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: <Widget>[
+      children: const <Widget>[
         BestFoodTiles(
             name: "Fried Egg",
             imageUrl: "ic_best_food_8",

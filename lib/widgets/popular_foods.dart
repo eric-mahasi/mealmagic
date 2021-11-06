@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:mealmagic/animation/rotation_route.dart';
 import 'package:mealmagic/animation/scale_route.dart';
 import 'package:mealmagic/screens/food_details.dart';
 
 class PopularFoodsWidget extends StatefulWidget {
+  const PopularFoodsWidget({Key? key}) : super(key: key);
+
   @override
   _PopularFoodsWidgetState createState() => _PopularFoodsWidgetState();
 }
@@ -11,11 +12,11 @@ class PopularFoodsWidget extends StatefulWidget {
 class _PopularFoodsWidgetState extends State<PopularFoodsWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 265,
       width: double.infinity,
       child: Column(
-        children: <Widget>[
+        children: const <Widget>[
           PopularFoodTitle(),
           Expanded(
             child: PopularFoodItems(),
@@ -27,12 +28,12 @@ class _PopularFoodsWidgetState extends State<PopularFoodsWidget> {
 }
 
 class PopularFoodTiles extends StatelessWidget {
-  String name;
-  String imageUrl;
-  String price;
-  String slug;
+  final String name;
+  final String imageUrl;
+  final String price;
+  final String slug;
 
-  PopularFoodTiles(
+  const PopularFoodTiles(
       {Key? key,
         required this.name,
         required this.imageUrl,
@@ -44,13 +45,13 @@ class PopularFoodTiles extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context, ScaleRoute(page: FoodDetailsPage()));
+        Navigator.push(context, ScaleRoute(page: const FoodDetailsPage()));
       },
       child: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(left: 10, right: 5, top: 5, bottom: 5),
-            decoration: BoxDecoration(boxShadow: [
+            padding: const EdgeInsets.only(left: 10, right: 5, top: 5, bottom: 5),
+            decoration: const BoxDecoration(boxShadow: [
               /* BoxShadow(
                 color: Color(0xFFfae3e2),
                 blurRadius: 15.0,
@@ -60,19 +61,19 @@ class PopularFoodTiles extends StatelessWidget {
             child: Card(
                 color: Colors.white,
                 elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: const BorderRadius.all(
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
                     Radius.circular(5.0),
                   ),
                 ),
-                child: Container(
+                child: SizedBox(
                   width: 170,
                   height: 210,
                   child: Column(
                     children: <Widget>[
                       Stack(
                         children: <Widget>[
-                          Align(
+                          const Align(
                             alignment: Alignment.topRight,
                           ),
                           Align(
@@ -93,9 +94,9 @@ class PopularFoodTiles extends StatelessWidget {
                         children: <Widget>[
                           Container(
                             alignment: Alignment.bottomLeft,
-                            padding: EdgeInsets.only(left: 5, top: 5),
+                            padding: const EdgeInsets.only(left: 5, top: 5),
                             child: Text(name,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Color(0xFF6e6e71),
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500)),
@@ -109,15 +110,15 @@ class PopularFoodTiles extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
                               Container(
-                                padding: EdgeInsets.only(top: 3, left: 5),
+                                padding: const EdgeInsets.only(top: 3, left: 5),
                               ),
                             ],
                           ),
                           Container(
                             alignment: Alignment.bottomLeft,
-                            padding: EdgeInsets.only(left: 5, top: 5, right: 5),
+                            padding: const EdgeInsets.only(left: 5, top: 5, right: 5),
                             child: Text('Ksh ' + price,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Color(0xFF6e6e71),
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600)),
@@ -135,13 +136,15 @@ class PopularFoodTiles extends StatelessWidget {
 }
 
 class PopularFoodTitle extends StatelessWidget {
+  const PopularFoodTitle({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
+        children: const <Widget>[
           Text(
             "Popular Foods",
             style: TextStyle(
@@ -161,11 +164,13 @@ class PopularFoodTitle extends StatelessWidget {
 }
 
 class PopularFoodItems extends StatelessWidget {
+  const PopularFoodItems({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ListView(
       scrollDirection: Axis.horizontal,
-      children: <Widget>[
+      children: const <Widget>[
         PopularFoodTiles(
             name: "Fried Egg",
             imageUrl: "ic_popular_food_1",

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 class SearchWidget extends StatelessWidget {
+  const SearchWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return const Padding(
       padding: EdgeInsets.only(left: 10,top: 5,right: 10,bottom: 5),
       child: TextField(
         decoration: InputDecoration(
@@ -22,7 +24,7 @@ class SearchWidget extends StatelessWidget {
           ),
           fillColor: Color(0xFFFAFAFA),
           suffixIcon: Icon(Icons.sort,color: Color(0xfff47a5a),),
-          hintStyle: new TextStyle(color: Color(0xFFd0cece), fontSize: 18),
+          hintStyle: TextStyle(color: Color(0xFFd0cece), fontSize: 18),
           hintText: "Search",
         ),
       ),
