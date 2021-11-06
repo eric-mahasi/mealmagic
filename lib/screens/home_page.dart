@@ -6,13 +6,13 @@ import 'package:mealmagic/widgets/bottom_nav_bar.dart';
 import 'package:mealmagic/widgets/popular_foods.dart';
 import 'package:mealmagic/widgets/search.dart';
 
-
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
 }
+
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
@@ -40,19 +40,21 @@ class _HomePageState extends State<HomePage> {
                 Icons.notifications_none,
                 color: Color(0xFF3a3737),
               ),
-              onPressed: () {Navigator.push(context, ScaleRoute(page: const SignInPage()));})
+              onPressed: () {
+                Navigator.push(context, ScaleRoute(page: const SignInPage()));
+              })
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: <Widget>[
+          children: const <Widget>[
             SearchWidget(),
             PopularFoodsWidget(),
             BestFoodWidget(),
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavBarWidget(),
+      bottomNavigationBar: const BottomNavBarWidget(),
     );
   }
 }

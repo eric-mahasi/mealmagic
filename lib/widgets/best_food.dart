@@ -58,12 +58,12 @@ class BestFoodTiles extends StatelessWidget {
 
   const BestFoodTiles(
       {Key? key,
-        required this.name,
-        required this.imageUrl,
-        required this.rating,
-        required this.numberOfRating,
-        required this.price,
-        required this.slug})
+      required this.name,
+      required this.imageUrl,
+      required this.rating,
+      required this.numberOfRating,
+      required this.price,
+      required this.slug})
       : super(key: key);
 
   @override
@@ -73,7 +73,8 @@ class BestFoodTiles extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-            padding: const EdgeInsets.only(left: 10, right: 5, top: 5, bottom: 5),
+            padding:
+                const EdgeInsets.only(left: 10, right: 5, top: 5, bottom: 5),
             decoration: const BoxDecoration(boxShadow: [
               /* BoxShadow(
                 color: Color(0xFFfae3e2),
@@ -108,33 +109,37 @@ class BestFoodList extends StatelessWidget {
     return ListView(
       children: const <Widget>[
         BestFoodTiles(
-            name: "Fried Egg",
-            imageUrl: "ic_best_food_8",
-            rating: '4.9',
-            numberOfRating: '200',
-            price: '15.06',
-            slug: "fried_egg",),
+          name: "Fried Egg",
+          imageUrl: "ic_best_food_8",
+          rating: '4.9',
+          numberOfRating: '200',
+          price: '15.06',
+          slug: "fried_egg",
+        ),
         BestFoodTiles(
-            name: "Mixed vegetable",
-            imageUrl: "ic_best_food_9",
-            rating: "4.9",
-            numberOfRating: "100",
-            price: "17.03",
-            slug: "",),
+          name: "Mixed vegetable",
+          imageUrl: "ic_best_food_9",
+          rating: "4.9",
+          numberOfRating: "100",
+          price: "17.03",
+          slug: "",
+        ),
         BestFoodTiles(
-            name: "Salad with chicken meat",
-            imageUrl: "ic_best_food_10",
-            rating: "4.0",
-            numberOfRating: "50",
-            price: "11.00",
-            slug: "",),
+          name: "Salad with chicken meat",
+          imageUrl: "ic_best_food_10",
+          rating: "4.0",
+          numberOfRating: "50",
+          price: "11.00",
+          slug: "",
+        ),
         BestFoodTiles(
-            name: "New mixed salad",
-            imageUrl: "ic_best_food_5",
-            rating: "4.00",
-            numberOfRating: "100",
-            price: "11.10",
-            slug: "",),
+          name: "New mixed salad",
+          imageUrl: "ic_best_food_5",
+          rating: "4.00",
+          numberOfRating: "100",
+          price: "11.10",
+          slug: "",
+        ),
         BestFoodTiles(
             name: "Red meat with salad",
             imageUrl: "ic_best_food_1",

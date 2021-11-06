@@ -50,9 +50,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         width: double.infinity,
         height: 60,
         child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            primary: const Color(0xfff47a5a)
-          ),
+          style: ElevatedButton.styleFrom(primary: const Color(0xfff47a5a)),
           child: const Text(
             'Lets go right away!',
             style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
@@ -63,29 +61,25 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       pages: [
         PageViewModel(
           title: "All your favorites",
-          body:
-          "Hungry or craving delicious dishes?",
+          body: "Hungry or craving delicious dishes?",
           image: _buildImage('lady-eating-pizza.jpg'),
           decoration: pageDecoration,
         ),
         PageViewModel(
           title: "A wide variety of food",
-          body:
-          "Lots of options to choose from.",
+          body: "Lots of options to choose from.",
           image: _buildImage('hamburger.jpg'),
           decoration: pageDecoration,
         ),
         PageViewModel(
           title: "Search for a place",
-          body:
-          "Set your location and browse food vendors around you.",
+          body: "Set your location and browse food vendors around you.",
           image: _buildImage('map-navigation.jpg'),
           decoration: pageDecoration,
         ),
         PageViewModel(
           title: "Fast delivery",
-          body:
-          "Super-fast and reliable delivery.",
+          body: "Super-fast and reliable delivery.",
           image: _buildImage('guy-on-motorbike.jpg'),
           decoration: pageDecoration,
         ),
@@ -98,7 +92,9 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       //rtl: true, // Display as right-to-left
       skip: const Text('Skip', style: TextStyle(color: Color(0xfff47a5a))),
       next: const Icon(Icons.arrow_forward, color: Color(0xfff47a5a)),
-      done: const Text('Done', style: TextStyle(fontWeight: FontWeight.w600, color: Color(0xfff47a5a))),
+      done: const Text('Done',
+          style:
+              TextStyle(fontWeight: FontWeight.w600, color: Color(0xfff47a5a))),
       curve: Curves.fastLinearToSlowEaseIn,
       controlsMargin: const EdgeInsets.all(16),
       controlsPadding: kIsWeb

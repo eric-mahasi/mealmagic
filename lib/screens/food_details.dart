@@ -77,14 +77,14 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                 height: 15,
               ),
               Container(
-                    color: Colors.white24,
-                    child: const DetailContentMenu(),
-                    ), // class name
-                  ],
-                ),
-              ),
+                color: Colors.white24,
+                child: const DetailContentMenu(),
+              ), // class name
+            ],
           ),
-        );
+        ),
+      ),
+    );
   }
 }
 

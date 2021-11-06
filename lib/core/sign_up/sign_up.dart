@@ -4,7 +4,6 @@ import 'package:mealmagic/animation/scale_route.dart';
 import 'package:mealmagic/core/sign_in/sign_in.dart';
 import 'package:mealmagic/screens/home_page.dart';
 
-
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
 
@@ -28,7 +27,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.only(left: 20, right: 20, top: 35, bottom: 30),
+        padding:
+            const EdgeInsets.only(left: 20, right: 20, top: 35, bottom: 30),
         width: double.infinity,
         height: double.infinity,
         color: Colors.white70,
@@ -70,7 +70,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               decoration: InputDecoration(
                                 border: const OutlineInputBorder(
                                   borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
+                                      BorderRadius.all(Radius.circular(10.0)),
                                   borderSide: BorderSide(
                                     width: 0,
                                     style: BorderStyle.none,
@@ -97,7 +97,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               decoration: InputDecoration(
                                 border: const OutlineInputBorder(
                                   borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
+                                      BorderRadius.all(Radius.circular(10.0)),
                                   borderSide: BorderSide(
                                     width: 0,
                                     style: BorderStyle.none,
@@ -124,8 +124,8 @@ class _SignUpPageState extends State<SignUpPage> {
                         showCursor: true,
                         decoration: InputDecoration(
                           border: const OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(
-                                10.0)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
                             borderSide: BorderSide(
                               width: 0,
                               style: BorderStyle.none,
@@ -154,8 +154,8 @@ class _SignUpPageState extends State<SignUpPage> {
                         obscureText: _isObscure,
                         decoration: InputDecoration(
                           border: const OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(
-                                10.0)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
                             borderSide: BorderSide(
                               width: 0,
                               style: BorderStyle.none,
@@ -168,15 +168,15 @@ class _SignUpPageState extends State<SignUpPage> {
                             size: defaultIconSize,
                           ),
                           suffixIcon: IconButton(
-                            icon: Icon(
-                            _isObscure ? Icons.visibility : Icons.visibility_off),
-                            color: const Color(0xfff47a5a),
-                            onPressed: () {
-                            setState(() {
-                            _isObscure = !_isObscure;
-                            });
-                            }
-                          ),
+                              icon: Icon(_isObscure
+                                  ? Icons.visibility
+                                  : Icons.visibility_off),
+                              color: const Color(0xfff47a5a),
+                              onPressed: () {
+                                setState(() {
+                                  _isObscure = !_isObscure;
+                                });
+                              }),
                           fillColor: const Color(0xFFF2F3F5),
                           hintStyle: TextStyle(
                             color: const Color(0xFF666666),
@@ -198,9 +198,8 @@ class _SignUpPageState extends State<SignUpPage> {
                             color: const Color(0xfff47a5a),
                             //shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
                             child: const Padding(
-                              padding:
-                              EdgeInsets.symmetric(vertical: 10.0,
-                                  horizontal: 42.0),
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 10.0, horizontal: 42.0),
                               child: Text(
                                 "SIGN UP",
                                 style: TextStyle(
@@ -213,8 +212,8 @@ class _SignUpPageState extends State<SignUpPage> {
                               if (_formKey.currentState!.validate()) {
                                 _register();
                               }
-                              Navigator.push(context,
-                                  ScaleRoute(page: HomePage()));
+                              Navigator.push(
+                                  context, ScaleRoute(page: HomePage()));
                             }),
                       ),
                       const SizedBox(
@@ -242,7 +241,8 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     InkWell(
                       onTap: () {
-                        Navigator.push(context, ScaleRoute(page: const SignInPage()));
+                        Navigator.push(
+                            context, ScaleRoute(page: const SignInPage()));
                       },
                       child: Text(
                         "Sign In",
@@ -265,12 +265,12 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   void _register() async {
-    final FirebaseUser user = (await
-      FirebaseAuth.instance.createUserWithEmailAndPassword(
+    final FirebaseUser user =
+        (await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: _emailController.text,
       password: _passwordController.text,
-    )
-    ).user;
+    ))
+            .user;
     if (user != null) {
       setState(() {
         _success = true;

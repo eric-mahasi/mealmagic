@@ -118,143 +118,147 @@ class PaymentMethodsBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        children: <Widget>[
-          Container(
-            alignment: Alignment.center,
-            width: double.infinity,
-            height: 60,
-            decoration: BoxDecoration(boxShadow: [
-              BoxShadow(
-                color: const Color(0xFFfae3e2).withOpacity(0.1),
-                spreadRadius: 1,
-                blurRadius: 1,
-                offset: const Offset(0, 1),
-              ),
-            ]),
-            child: Card(
-              color: Colors.white,
-              elevation: 0,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(5.0),
-                ),
-              ),
-              child: Container(
-                alignment: Alignment.center,
-                padding: const EdgeInsets.only(left: 10, right: 30, top: 10, bottom: 10),
-                child: Row(
-                  children: <Widget>[
-                    Container(
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        "assets/icons/ic_credit_card.png",
-                        width: 50,
-                        height: 50,
-                      ),
-                    ),
-                    const Text(
-                      "Credit/Debit Card",
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: Color(0xFF3a3a3b),
-                          fontWeight: FontWeight.w400),
-                      textAlign: TextAlign.left,
-                    )
-                  ],
-                ),
-              ),
+    return Column(children: <Widget>[
+      Container(
+        alignment: Alignment.center,
+        width: double.infinity,
+        height: 60,
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(
+            color: const Color(0xFFfae3e2).withOpacity(0.1),
+            spreadRadius: 1,
+            blurRadius: 1,
+            offset: const Offset(0, 1),
+          ),
+        ]),
+        child: Card(
+          color: Colors.white,
+          elevation: 0,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(5.0),
             ),
-          ),Container(
+          ),
+          child: Container(
             alignment: Alignment.center,
-            width: double.infinity,
-            height: 60,
-            decoration: BoxDecoration(boxShadow: [
-              BoxShadow(
-                color: const Color(0xFFfae3e2).withOpacity(0.1),
-                spreadRadius: 1,
-                blurRadius: 1,
-                offset: const Offset(0, 1),
-              ),
-            ]),
-            child: Card(
-              color: Colors.white,
-              elevation: 0,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(5.0),
-                ),
-              ),
-              child: Container(
-                alignment: Alignment.center,
-                padding: const EdgeInsets.only(left: 10, right: 30, top: 10, bottom: 10),
-                child: Row(
-                  children: <Widget>[
-                    Container(
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        "assets/icons/ic_mpesa.png",
-                        width: 50,
-                        height: 50,
-                      ),
-                    ),
-                    const Text(
-                      "Mpesa",
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: Color(0xFF3a3a3b),
-                          fontWeight: FontWeight.w400),
-                      textAlign: TextAlign.left,
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),Container(
-              alignment: Alignment.center,
-              width: double.infinity,
-              height: 60,
-              decoration: BoxDecoration(boxShadow: [
-                BoxShadow(
-                  color: const Color(0xFFfae3e2).withOpacity(0.1),
-                  spreadRadius: 1,
-                  blurRadius: 1,
-                  offset: const Offset(0, 1),
-                ),
-              ]),
-              child: Card(
-                  color: Colors.white,
-                  elevation: 0,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(5.0),
-                    ),
+            padding:
+                const EdgeInsets.only(left: 10, right: 30, top: 10, bottom: 10),
+            child: Row(
+              children: <Widget>[
+                Container(
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                    "assets/icons/ic_credit_card.png",
+                    width: 50,
+                    height: 50,
                   ),
-                  child: Container(
-                    alignment: Alignment.center,
-                    padding: const EdgeInsets.only(left: 10, right: 30, top: 10, bottom: 10),
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                          alignment: Alignment.center,
-                          child: Image.asset(
-                            "assets/icons/ic_cash_on_delivery.png",
-                            width: 50,
-                            height: 50,
-                          ),
-                        ),
-                        const Text(
-                          "Cash on Delivery",
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: Color(0xFF3a3a3b),
-                              fontWeight: FontWeight.w400),
-                          textAlign: TextAlign.left,
-                        )
-                      ],
+                ),
+                const Text(
+                  "Credit/Debit Card",
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Color(0xFF3a3a3b),
+                      fontWeight: FontWeight.w400),
+                  textAlign: TextAlign.left,
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+      Container(
+        alignment: Alignment.center,
+        width: double.infinity,
+        height: 60,
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(
+            color: const Color(0xFFfae3e2).withOpacity(0.1),
+            spreadRadius: 1,
+            blurRadius: 1,
+            offset: const Offset(0, 1),
+          ),
+        ]),
+        child: Card(
+          color: Colors.white,
+          elevation: 0,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(5.0),
+            ),
+          ),
+          child: Container(
+            alignment: Alignment.center,
+            padding:
+                const EdgeInsets.only(left: 10, right: 30, top: 10, bottom: 10),
+            child: Row(
+              children: <Widget>[
+                Container(
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                    "assets/icons/ic_mpesa.png",
+                    width: 50,
+                    height: 50,
+                  ),
+                ),
+                const Text(
+                  "Mpesa",
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Color(0xFF3a3a3b),
+                      fontWeight: FontWeight.w400),
+                  textAlign: TextAlign.left,
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+      Container(
+          alignment: Alignment.center,
+          width: double.infinity,
+          height: 60,
+          decoration: BoxDecoration(boxShadow: [
+            BoxShadow(
+              color: const Color(0xFFfae3e2).withOpacity(0.1),
+              spreadRadius: 1,
+              blurRadius: 1,
+              offset: const Offset(0, 1),
+            ),
+          ]),
+          child: Card(
+              color: Colors.white,
+              elevation: 0,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(5.0),
+                ),
+              ),
+              child: Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.only(
+                    left: 10, right: 30, top: 10, bottom: 10),
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.center,
+                      child: Image.asset(
+                        "assets/icons/ic_cash_on_delivery.png",
+                        width: 50,
+                        height: 50,
+                      ),
                     ),
-                  )
-              ))]);
+                    const Text(
+                      "Cash on Delivery",
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Color(0xFF3a3a3b),
+                          fontWeight: FontWeight.w400),
+                      textAlign: TextAlign.left,
+                    )
+                  ],
+                ),
+              )))
+    ]);
   }
 }
 
@@ -285,7 +289,8 @@ class TotalCalculationWidget extends StatelessWidget {
         ),
         child: Container(
           alignment: Alignment.center,
-          padding: const EdgeInsets.only(left: 25, right: 30, top: 10, bottom: 10),
+          padding:
+              const EdgeInsets.only(left: 25, right: 30, top: 10, bottom: 10),
           child: Column(
             children: <Widget>[
               const SizedBox(
@@ -390,7 +395,8 @@ class PromoCodeWidget extends StatelessWidget {
                 borderSide: BorderSide(color: Color(0xFFe6e1e1), width: 1.0),
               ),
               enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Color(0xFFe6e1e1), width: 1.0),
+                  borderSide:
+                      const BorderSide(color: Color(0xFFe6e1e1), width: 1.0),
                   borderRadius: BorderRadius.circular(7)),
               fillColor: Colors.white,
               hintText: 'Add Your Promo Code',
@@ -426,17 +432,17 @@ class CartItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      height: 130,
-      decoration: BoxDecoration(boxShadow: [
-        BoxShadow(
-          color: const Color(0xFFfae3e2).withOpacity(0.3),
-          spreadRadius: 1,
-          blurRadius: 1,
-          offset: const Offset(0, 1),
-        ),
-      ]),
-      child: Card(
+        width: double.infinity,
+        height: 130,
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(
+            color: const Color(0xFFfae3e2).withOpacity(0.3),
+            spreadRadius: 1,
+            blurRadius: 1,
+            offset: const Offset(0, 1),
+          ),
+        ]),
+        child: Card(
           color: Colors.white,
           elevation: 0,
           shape: const RoundedRectangleBorder(
@@ -445,81 +451,81 @@ class CartItem extends StatelessWidget {
             ),
           ),
           child: Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.only(left: 5, right: 5, top: 10, bottom: 10),
-
-            child: SingleChildScrollView(
-    scrollDirection: Axis.horizontal,
-    child: Row(
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Center(
-                      child: Image.asset(
-                    "assets/images/popular_foods/$productImage.png",
-                    width: 110,
-                    height: 100,
-                  )),
-                ),
-                Column(
+              alignment: Alignment.center,
+              padding:
+                  const EdgeInsets.only(left: 5, right: 5, top: 10, bottom: 10),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
                   mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    const SizedBox(
-                      height: 5,
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Center(
+                          child: Image.asset(
+                        "assets/images/popular_foods/$productImage.png",
+                        width: 110,
+                        height: 100,
+                      )),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
-                            Text(
-                              productName,
-                              style: const TextStyle(
-                                  fontSize: 18,
-                                  color: Color(0xFF3a3a3b),
-                                  fontWeight: FontWeight.w400),
-                              textAlign: TextAlign.left,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  productName,
+                                  style: const TextStyle(
+                                      fontSize: 18,
+                                      color: Color(0xFF3a3a3b),
+                                      fontWeight: FontWeight.w400),
+                                  textAlign: TextAlign.left,
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  productPrice,
+                                  style: const TextStyle(
+                                      fontSize: 18,
+                                      color: Color(0xFF3a3a3b),
+                                      fontWeight: FontWeight.w400),
+                                  textAlign: TextAlign.left,
+                                ),
+                              ],
                             ),
                             const SizedBox(
-                              height: 5,
+                              width: 40,
                             ),
-                            Text(
-                              productPrice,
-                              style: const TextStyle(
-                                  fontSize: 18,
-                                  color: Color(0xFF3a3a3b),
-                                  fontWeight: FontWeight.w400),
-                              textAlign: TextAlign.left,
-                            ),
+                            Container(
+                              alignment: Alignment.centerRight,
+                              child: Image.asset(
+                                "assets/icons/ic_delete.png",
+                                width: 25,
+                                height: 25,
+                              ),
+                            )
                           ],
                         ),
-                        const SizedBox(
-                          width: 40,
-                        ),
                         Container(
+                          margin: const EdgeInsets.only(left: 20),
                           alignment: Alignment.centerRight,
-                          child: Image.asset(
-                            "assets/icons/ic_delete.png",
-                            width: 25,
-                            height: 25,
-                          ),
+                          child: const AddToCartMenu(2),
                         )
                       ],
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(left: 20),
-                      alignment: Alignment.centerRight,
-                      child: const AddToCartMenu(2),
                     )
                   ],
-                )
-              ],
-            ),
-          )),
-    ));
+                ),
+              )),
+        ));
   }
 }
 

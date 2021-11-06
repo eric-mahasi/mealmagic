@@ -35,10 +35,10 @@ class PopularFoodTiles extends StatelessWidget {
 
   const PopularFoodTiles(
       {Key? key,
-        required this.name,
-        required this.imageUrl,
-        required this.price,
-        required this.slug})
+      required this.name,
+      required this.imageUrl,
+      required this.price,
+      required this.slug})
       : super(key: key);
 
   @override
@@ -50,7 +50,8 @@ class PopularFoodTiles extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-            padding: const EdgeInsets.only(left: 10, right: 5, top: 5, bottom: 5),
+            padding:
+                const EdgeInsets.only(left: 10, right: 5, top: 5, bottom: 5),
             decoration: const BoxDecoration(boxShadow: [
               /* BoxShadow(
                 color: Color(0xFFfae3e2),
@@ -80,12 +81,12 @@ class PopularFoodTiles extends StatelessWidget {
                             alignment: Alignment.centerLeft,
                             child: Center(
                                 child: Image.asset(
-                                  'assets/images/popular_foods/' +
-                                      imageUrl +
-                                      ".png",
-                                  width: 130,
-                                  height: 140,
-                                )),
+                              'assets/images/popular_foods/' +
+                                  imageUrl +
+                                  ".png",
+                              width: 130,
+                              height: 140,
+                            )),
                           )
                         ],
                       ),
@@ -116,7 +117,8 @@ class PopularFoodTiles extends StatelessWidget {
                           ),
                           Container(
                             alignment: Alignment.bottomLeft,
-                            padding: const EdgeInsets.only(left: 5, top: 5, right: 5),
+                            padding: const EdgeInsets.only(
+                                left: 5, top: 5, right: 5),
                             child: Text('Ksh ' + price,
                                 style: const TextStyle(
                                     color: Color(0xFF6e6e71),
@@ -220,5 +222,3 @@ class PopularFoodItems extends StatelessWidget {
     );
   }
 }
-
-

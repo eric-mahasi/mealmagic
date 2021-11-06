@@ -6,7 +6,7 @@ class SearchWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: EdgeInsets.only(left: 10,top: 5,right: 10,bottom: 5),
+      padding: EdgeInsets.only(left: 10, top: 5, right: 10, bottom: 5),
       child: TextField(
         decoration: InputDecoration(
           border: OutlineInputBorder(
@@ -23,7 +23,10 @@ class SearchWidget extends StatelessWidget {
             color: Color(0xfff47a5a),
           ),
           fillColor: Color(0xFFFAFAFA),
-          suffixIcon: Icon(Icons.sort,color: Color(0xfff47a5a),),
+          suffixIcon: Icon(
+            Icons.sort,
+            color: Color(0xfff47a5a),
+          ),
           hintStyle: TextStyle(color: Color(0xFFd0cece), fontSize: 18),
           hintText: "Search",
         ),

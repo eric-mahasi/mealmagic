@@ -17,7 +17,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
     void _onItemTapped(int index) {
       setState(() {
         _selectedIndex = index;
-        switch(index) {
+        switch (index) {
           case 2:
             Navigator.push(context, ScaleRoute(page: const FoodOrderPage()));
             break;
@@ -30,25 +30,16 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
-          label:
-            'Home',
+          label: 'Home',
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.assignment),
-          label:
-            'Orders'
-          ),
+        BottomNavigationBarItem(icon: Icon(Icons.assignment), label: 'Orders'),
         BottomNavigationBarItem(
           icon: Icon(Icons.shopping_cart),
-          label:
-            'Cart',
-
+          label: 'Cart',
         ),
         BottomNavigationBarItem(
           icon: Icon(FontAwesomeIcons.user),
-          label:
-            'Account',
-
+          label: 'Account',
         ),
       ],
       currentIndex: _selectedIndex,
