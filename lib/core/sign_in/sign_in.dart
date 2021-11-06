@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:mealmagic/animation/scale_route.dart';
 import 'package:mealmagic/core/sign_up/sign_up.dart';
 import 'package:mealmagic/screens/home_page.dart';
@@ -177,7 +178,6 @@ class _SignInPageState extends State<SignInPage> {
                         if (_formKey.currentState!.validate()) {
                           _signInWithEmailAndPassword();
                         }
-                        Navigator.push(context, ScaleRoute(page: HomePage()));
                       }),
                 ),
                   SizedBox(
@@ -237,21 +237,26 @@ class _SignInPageState extends State<SignInPage> {
     super.dispose();
   }
 
-  void _signInWithEmailAndPassword() async {
-    final FirebaseUser user = (await FirebaseAuth.instance.signInWithEmailAndPassword(
-    email: _emailController.text,
-    password: _passwordController.text,
-    )).user;
+void _signInWithEmailAndPassword() async {
+  try {
+    AuthResult result = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text, password: _passwordController.text);
+  } on PlatformException catch (e) {
+    String message = 'An error occurred, please check your credentials!';
 
-    if (user != null) {
-    setState(() {
-    _success = true;
-    _userEmail = user.email;
-    });
-    } else {
-    setState(() {
-    _success = false;
-    });
+    if (e.message != null) {
+      message = e.message!;
+      setState(() {
+        _success = false;
+      });
     }
+    else {
+      setState(() {
+        _success = true;
+      });
+    }
+    final snackBar = SnackBar(content: Text(message));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
+}
 }
