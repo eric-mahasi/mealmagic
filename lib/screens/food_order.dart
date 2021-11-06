@@ -145,7 +145,7 @@ class PaymentMethodsBuilder extends StatelessWidget {
                     Container(
                       alignment: Alignment.center,
                       child: Image.asset(
-                        "/icons/ic_credit_card.png",
+                        "assets/icons/ic_credit_card.png",
                         width: 50,
                         height: 50,
                       ),
@@ -190,7 +190,7 @@ class PaymentMethodsBuilder extends StatelessWidget {
                     Container(
                       alignment: Alignment.center,
                       child: Image.asset(
-                        "/icons/ic_mpesa.png",
+                        "assets/icons/ic_mpesa.png",
                         width: 50,
                         height: 50,
                       ),
@@ -235,7 +235,7 @@ class PaymentMethodsBuilder extends StatelessWidget {
                         Container(
                           alignment: Alignment.center,
                           child: Image.asset(
-                            "/icons/ic_cash_on_delivery.png",
+                            "assets/icons/ic_cash_on_delivery.png",
                             width: 50,
                             height: 50,
                           ),
@@ -448,7 +448,7 @@ class CartItem extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: Center(
                         child: Image.asset(
-                      "/images/popular_foods/$productImage.png",
+                      "assets/images/popular_foods/$productImage.png",
                       width: 110,
                       height: 100,
                     )),
@@ -498,7 +498,7 @@ class CartItem extends StatelessWidget {
                         Container(
                           alignment: Alignment.centerRight,
                           child: Image.asset(
-                            "icons/ic_delete.png",
+                            "assets/icons/ic_delete.png",
                             width: 25,
                             height: 25,
                           ),
