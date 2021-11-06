@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
           "What would you like to eat?",
           style: TextStyle(
               color: Color(0xFF3a3737),
-              fontSize: 24,
+              fontSize: 18,
               fontWeight: FontWeight.bold),
         ),
         brightness: Brightness.light,
