@@ -1,9 +1,13 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:mealmagic/animation/scale_route.dart';
 import 'package:mealmagic/core/sign_up/sign_up.dart';
+import 'package:mealmagic/providers/product.dart';
+import 'package:mealmagic/providers/restaurant.dart';
+import 'package:mealmagic/providers/user.dart';
+import 'package:mealmagic/screens/home_page.dart';
+import 'package:mealmagic/services/screen_navigation.dart';
+import 'package:provider/provider.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -14,9 +18,6 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  late bool _success;
   bool _isObscure = true;
 
   @override
@@ -24,6 +25,9 @@ class _SignInPageState extends State<SignInPage> {
     String defaultFontFamily = 'Roboto-Light.ttf';
     double defaultFontSize = 14;
     double defaultIconSize = 17;
+    final authProvider = Provider.of<UserProvider>(context);
+    final restaurantProvider = Provider.of<RestaurantProvider>(context);
+    final productProvider = Provider.of<ProductProvider>(context);
 
     return Scaffold(
       body: Container(
@@ -63,7 +67,7 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                       TextFormField(
                         showCursor: true,
-                        controller: _emailController,
+                        controller: authProvider.email,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Please enter an email';
@@ -98,7 +102,7 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                       TextFormField(
                         showCursor: true,
-                        controller: _passwordController,
+                        controller: authProvider.password,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Please enter a password';
@@ -177,7 +181,17 @@ class _SignInPageState extends State<SignInPage> {
                             ),
                             onPressed: () async {
                               if (_formKey.currentState!.validate()) {
-                                _signInWithEmailAndPassword();
+                                  if (!await authProvider.signIn()) {
+                                    const snackBar = SnackBar(
+                                        content: Text("Log in failed"));
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        snackBar);
+                                    return;
+                                  }
+                                restaurantProvider.loadRestaurants();
+                                productProvider.loadProducts();
+                                authProvider.clearController();
+                                changeScreenReplacement(context, const HomePage());
                               }
                             }),
                       ),
@@ -227,35 +241,5 @@ class _SignInPageState extends State<SignInPage> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
-
-  void _signInWithEmailAndPassword() async {
-    try {
-      AuthResult result = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(
-              email: _emailController.text, password: _passwordController.text);
-    } on PlatformException catch (e) {
-      String message = 'An error occurred, please check your credentials!';
-
-      if (e.message != null) {
-        message = e.message!;
-        setState(() {
-          _success = false;
-        });
-      } else {
-        setState(() {
-          _success = true;
-        });
-      }
-      final snackBar = SnackBar(content: Text(message));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    }
   }
 }

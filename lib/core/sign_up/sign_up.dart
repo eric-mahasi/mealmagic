@@ -1,8 +1,12 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mealmagic/animation/scale_route.dart';
 import 'package:mealmagic/core/sign_in/sign_in.dart';
+import 'package:mealmagic/providers/product.dart';
+import 'package:mealmagic/providers/restaurant.dart';
+import 'package:mealmagic/providers/user.dart';
 import 'package:mealmagic/screens/home_page.dart';
+import 'package:mealmagic/services/screen_navigation.dart';
+import 'package:provider/provider.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -13,10 +17,6 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  late bool _success;
-  late String _userEmail;
   bool _isObscure = true;
 
   @override
@@ -24,6 +24,9 @@ class _SignUpPageState extends State<SignUpPage> {
     String defaultFontFamily = 'Roboto-Light.ttf';
     double defaultFontSize = 14;
     double defaultIconSize = 17;
+    final authProvider = Provider.of<UserProvider>(context);
+    final restaurantProvider = Provider.of<RestaurantProvider>(context);
+    final productProvider = Provider.of<ProductProvider>(context);
 
     return Scaffold(
       body: Container(
@@ -65,7 +68,14 @@ class _SignUpPageState extends State<SignUpPage> {
                         children: <Widget>[
                           Flexible(
                             flex: 1,
-                            child: TextField(
+                            child: TextFormField(
+                              controller: authProvider.first_name,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Please enter your first name';
+                                }
+                                return null;
+                              },
                               showCursor: true,
                               decoration: InputDecoration(
                                 border: const OutlineInputBorder(
@@ -92,7 +102,14 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           Flexible(
                             flex: 1,
-                            child: TextField(
+                            child: TextFormField(
+                              controller: authProvider.last_name,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Please enter your last name';
+                                }
+                                return null;
+                              },
                               showCursor: true,
                               decoration: InputDecoration(
                                 border: const OutlineInputBorder(
@@ -120,7 +137,13 @@ class _SignUpPageState extends State<SignUpPage> {
                         height: 15,
                       ),
                       TextFormField(
-                        controller: _emailController,
+                        controller: authProvider.email,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter an email';
+                          }
+                          return null;
+                        },
                         showCursor: true,
                         decoration: InputDecoration(
                           border: const OutlineInputBorder(
@@ -143,6 +166,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               fontFamily: defaultFontFamily,
                               fontSize: defaultFontSize),
                           hintText: "Email",
+
                         ),
                       ),
                       const SizedBox(
@@ -150,8 +174,14 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       TextFormField(
                         showCursor: true,
-                        controller: _passwordController,
+                        controller: authProvider.password,
                         obscureText: _isObscure,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter a password';
+                          }
+                          return null;
+                        },
                         decoration: InputDecoration(
                           border: const OutlineInputBorder(
                             borderRadius:
@@ -210,10 +240,16 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                             onPressed: () async {
                               if (_formKey.currentState!.validate()) {
-                                _register();
+                                if(!await authProvider.signUp()){
+                                  const snackBar = SnackBar(content: Text("Sign up failed"));
+                                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                  return;
+                                }
+                                restaurantProvider.loadRestaurants();
+                                productProvider.loadProducts();
+                                authProvider.clearController();
+                                changeScreenReplacement(context, const HomePage());
                               }
-                              Navigator.push(
-                                  context, ScaleRoute(page: HomePage()));
                             }),
                       ),
                       const SizedBox(
@@ -262,31 +298,5 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
       ),
     );
-  }
-
-  void _register() async {
-    final FirebaseUser user =
-        (await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: _emailController.text,
-      password: _passwordController.text,
-    ))
-            .user;
-    if (user != null) {
-      setState(() {
-        _success = true;
-        _userEmail = user.email;
-      });
-    } else {
-      setState(() {
-        _success = true;
-      });
-    }
-  }
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
   }
 }
