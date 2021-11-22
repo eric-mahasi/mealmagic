@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mealmagic/services/style.dart';
 import 'package:mealmagic/models/restaurant.dart';
-import 'package:transparent_image/transparent_image.dart';
+import 'package:mealmagic/services/style.dart';
 import 'package:mealmagic/widgets/small_floating_button.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 import 'loading.dart';
 
@@ -23,7 +23,7 @@ class RestaurantWidget extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                SmallButton(Icons.favorite),
+                const SmallButton(Icons.favorite),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
@@ -34,11 +34,11 @@ class RestaurantWidget extends StatelessWidget {
                     ),
                     child: Row(
                       children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(2.0),
+                        const Padding(
+                          padding: EdgeInsets.all(2.0),
                           child: Icon(
                             Icons.star,
-                            color: Colors.yellow[900],
+                            color: Color(0xfff47a5a),
                             size: 20,
                           ),
                         ),
@@ -56,10 +56,10 @@ class RestaurantWidget extends StatelessWidget {
                 child: Container(
                   height: 100,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(20),
-                        bottomRight: Radius.circular(20),
-                      ),
+                      borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20),
+                  ),
                       gradient: LinearGradient(
                         begin: Alignment.bottomCenter,
                         end: Alignment.topCenter,
@@ -85,21 +85,19 @@ class RestaurantWidget extends StatelessWidget {
                       padding: const EdgeInsets.fromLTRB(12, 8, 8, 8),
                       child: RichText(
                         text: TextSpan(children: [
-                          TextSpan(
-                              text: "${restaurant.name} \n",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold)),
-                          TextSpan(
-                              text: "avg meal price: ",
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w300)),
-                          TextSpan(
-                              text: "\$${restaurant.avgPrice} \n",
-                              style: TextStyle(fontSize: 16)),
-                        ], style: TextStyle(color: white)),
-                      ),
+                      TextSpan(
+                          text: "${restaurant.name} \n",
+                          style: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold)),
+                      const TextSpan(
+                          text: "Average meal price: ",
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w300)),
+                      TextSpan(
+                          text: "Ksh${restaurant.avgPrice} \n",
+                          style: const TextStyle(fontSize: 16)),
+                    ], style: const TextStyle(color: white)),
+                  ),
                     ),
                   ],
                 ),
@@ -110,7 +108,7 @@ class RestaurantWidget extends StatelessWidget {
   }
 
   Widget _backgroundImage(String image){
-    if(image.isEmpty || image == null){
+    if (image.isEmpty) {
       return Container(
           height: 210,
           decoration: BoxDecoration(
@@ -118,9 +116,11 @@ class RestaurantWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Center(
-            child: Image.asset("images/table.png", width: 120,),
-          )
-      );
+            child: Image.asset(
+              "images/table.png",
+              width: 120,
+            ),
+          ));
     }else{
       return Padding(
         padding: const EdgeInsets.all(0),
@@ -130,9 +130,7 @@ class RestaurantWidget extends StatelessWidget {
               children: <Widget>[
                 Positioned.fill(child: Align(
                   alignment: Alignment.center,
-                  child: Container(
-                      height: 120,
-                      child: Loading()),
+                  child: SizedBox(height: 120, child: Loading()),
                 )),
                 Center(
                   child: FadeInImage.memoryNetwork(placeholder: kTransparentImage, image: restaurant.image),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mealmagic/animation/scale_route.dart';
-import 'package:mealmagic/screens/food_order.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mealmagic/screens/cart.dart';
+import 'package:mealmagic/services/screen_navigation.dart';
 
 class BottomNavBarWidget extends StatefulWidget {
   const BottomNavBarWidget({Key? key}) : super(key: key);
@@ -19,7 +18,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
         _selectedIndex = index;
         switch (index) {
           case 2:
-            Navigator.push(context, ScaleRoute(page: const FoodOrderPage()));
+            changeScreen(context, const CartScreen());
             break;
         }
       });
@@ -38,7 +37,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
           label: 'Cart',
         ),
         BottomNavigationBarItem(
-          icon: Icon(FontAwesomeIcons.user),
+          icon: Icon(Icons.account_circle_outlined),
           label: 'Account',
         ),
       ],

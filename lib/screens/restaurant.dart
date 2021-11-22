@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:mealmagic/models/restaurant.dart';
+import 'package:mealmagic/providers/product.dart';
 import 'package:mealmagic/services/screen_navigation.dart';
 import 'package:mealmagic/services/style.dart';
 import 'package:mealmagic/widgets/custom_text.dart';
 import 'package:mealmagic/widgets/loading.dart';
 import 'package:mealmagic/widgets/product.dart';
-import 'package:mealmagic/providers/product.dart';
-import 'package:mealmagic/models/restaurant.dart';
 import 'package:mealmagic/widgets/small_floating_button.dart';
 import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -25,7 +25,6 @@ class RestaurantScreen extends StatelessWidget {
       body: SafeArea(
           child: ListView(
             children: <Widget>[
-
               Stack(
                 children: <Widget>[
                   Positioned.fill(
@@ -36,11 +35,10 @@ class RestaurantScreen extends StatelessWidget {
 
                   // restaurant image
                   ClipRRect(
-
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20),
-                    ),
+                    borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                ),
                     child: FadeInImage.memoryNetwork(
                       placeholder: kTransparentImage,
                       image: restaurantModel.image,
@@ -54,10 +52,10 @@ class RestaurantScreen extends StatelessWidget {
                   Container(
                     height: 160,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(20),
-                          bottomRight: Radius.circular(20),
-                        ),
+                        borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(20),
+                    ),
                         gradient: LinearGradient(
                           begin: Alignment.bottomCenter,
                           end: Alignment.topCenter,
@@ -75,43 +73,54 @@ class RestaurantScreen extends StatelessWidget {
 
                   //restaurant name
                   Positioned.fill(
-                      bottom: 60,
-                      child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: CustomText(text: restaurantModel.name, color: white, size: 26, weight: FontWeight.w300,))),
+                  bottom: 60,
+                  child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: CustomText(
+                        text: restaurantModel.name,
+                        color: white,
+                        size: 26,
+                        weight: FontWeight.w300,
+                      ))),
 
-                  // average price
-                  Positioned.fill(
-                      bottom: 40,
-                      child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: CustomText(text: "Average Price: \$" + restaurantModel.avgPrice.toString(), color: white, size: 18, weight: FontWeight.w300,))),
+              // average price
+              Positioned.fill(
+                  bottom: 40,
+                  child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: CustomText(
+                        text: "Average Price: Ksh" +
+                            restaurantModel.avgPrice.toString(),
+                        color: white,
+                        size: 18,
+                        weight: FontWeight.w300,
+                      ))),
 
-                  // rating widget
-                  Positioned.fill(
-                      bottom: 2,
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child:                 Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            width: 50,
-                            decoration: BoxDecoration(
+              // rating widget
+              Positioned.fill(
+                  bottom: 2,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        width: 50,
+                        decoration: BoxDecoration(
                               color: white,
                               borderRadius: BorderRadius.circular(5),
                             ),
                             child: Row(
                               children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.all(2.0),
-                                  child: Icon(
-                                    Icons.star,
-                                    color: Colors.yellow[900],
-                                    size: 20,
-                                  ),
-                                ),
-                                Text(restaurantModel.rating.toString()),
-                              ],
+                            const Padding(
+                              padding: EdgeInsets.all(2.0),
+                              child: Icon(
+                                Icons.star,
+                                color: Color(0xfff47a5a),
+                                size: 20,
+                              ),
+                            ),
+                            Text(restaurantModel.rating.toString()),
+                          ],
                             ),
                           ),
                         ),
@@ -120,54 +129,41 @@ class RestaurantScreen extends StatelessWidget {
                   // close button
                   Positioned.fill(
                       top: 5,
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.all(4),
-                          child: GestureDetector(
-                            onTap: (){
-                              Navigator.pop(context);
-                            },
-                            child: Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: black.withOpacity(0.2)
-                                ),
-                                child: Icon(Icons.close, color: white,)),
-                          ),
-                        ),)),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(4),
+                    child: GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Icon(
+                          Icons.close,
+                          color: black,
+                        )),
+                  ),
+                ),
+              ),
 
-                  //like button
-                  Positioned.fill(
-                      top: 5,
-                      child: Align(
-                        alignment: Alignment.topRight,
-                        child: Padding(
-                          padding: const EdgeInsets.all(4),
-                          child: GestureDetector(
-                            onTap: (){
-                            },
-                            child: SmallButton(Icons.favorite),
-                          ),
+              //like button
+              Positioned.fill(
+                  top: 5,
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Padding(
+                      padding: const EdgeInsets.all(4),
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: const SmallButton(Icons.favorite),
+                      ),
                         ),)),
 
 
                 ],
               ),
-              SizedBox(
-                height: 10,
-              ),
-
-
-//              open & book section
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  CustomText(text: "Open", color: green, weight: FontWeight.w400, size: 18,),
-                  Container(
-                      child: TextButton.icon(onPressed: (){}, icon: Icon(Icons.restaurant_menu), label: CustomText(text: "Book Now", weight: FontWeight.normal, size: 12, color: black,)))
-                ],
-              ),
+              const SizedBox(
+            height: 10,
+          ),
 
               // products
               Column(
@@ -182,8 +178,6 @@ class RestaurantScreen extends StatelessWidget {
                 ))
                     .toList(),
               )
-
-
             ],
 
           )),

@@ -54,20 +54,26 @@ class _HomePageState extends State<HomePage> {
       ),
       body: ListView(
         children: <Widget>[
+          const SearchWidget(),
+          const PopularFoodsWidget(),
+          const Text(
+            "Browse restaurants",
+            style: TextStyle(
+                fontSize: 20,
+                color: Color(0xFF3a3a3b),
+                fontWeight: FontWeight.bold),
+          ),
+          Column(
+              children: restaurantProvider.restaurants
+                  .map((item) => GestureDetector(
+                        onTap: () async {
+                          app.changeLoading();
 
-            const SearchWidget(),
-            const PopularFoodsWidget(),
-          Column(children: restaurantProvider.restaurants
-              .map((item) => GestureDetector(
-            onTap: () async {
-              app.changeLoading();
+                          await productProvider.loadProductsByRestaurant(
+                              restaurantId: item.id.toString());
+                          app.changeLoading();
 
-              await productProvider.loadProductsByRestaurant(
-                  restaurantId: item.id.toString()
-              );
-              app.changeLoading();
-
-              changeScreen(
+                          changeScreen(
                   context,
                   RestaurantScreen(
                     restaurantModel: item,

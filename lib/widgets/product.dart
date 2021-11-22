@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mealmagic/services/style.dart';
 import 'package:mealmagic/models/products.dart';
 import 'package:mealmagic/providers/product.dart';
 import 'package:mealmagic/providers/restaurant.dart';
 import 'package:mealmagic/screens/restaurant.dart';
-import 'package:provider/provider.dart';
 import 'package:mealmagic/services/screen_navigation.dart';
+import 'package:mealmagic/services/style.dart';
+import 'package:provider/provider.dart';
 
 import 'custom_text.dart';
 
@@ -27,25 +27,24 @@ class ProductWidget extends StatelessWidget {
         decoration: BoxDecoration(
             color: white,
             borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                  color: black,
-                  offset: Offset(-2, -1),
-                  blurRadius: 5),
-            ]
-        ),
+            boxShadow: const [
+              BoxShadow(color: black, offset: Offset(-2, -1), blurRadius: 5),
+            ]),
 //            height: 160,
         child: Row(
           children: <Widget>[
-            Container(
+            SizedBox(
               width: 140,
               height: 120,
               child: ClipRRect(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(20),
                   topLeft: Radius.circular(20),
                 ),
-                child: Image.network(product.image, fit: BoxFit.fill,),
+                child: Image.network(
+                  product.image,
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
             Expanded(
@@ -62,23 +61,22 @@ class ProductWidget extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         child: Container(
                           decoration: BoxDecoration(
-                              borderRadius:
-                              BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(20),
                               color: white,
-                              boxShadow: [
+                              boxShadow: const [
                                 BoxShadow(
                                     color: black,
                                     offset: Offset(1, 1),
                                     blurRadius: 4),
                               ]),
-                          child: Padding(
-                            padding: const EdgeInsets.all(4.0),
+                          child: const Padding(
+                            padding: EdgeInsets.all(4.0),
                             child: Icon(
                               Icons.favorite_border,
-                              color: red,
+                              color: Color(0xfff47a5a),
                               size: 18,
                             ),
                           ),
@@ -87,7 +85,7 @@ class ProductWidget extends StatelessWidget {
                     ],
                   ),
 
-                  SizedBox(
+                  const SizedBox(
                     height: 25,
                   ),
 
@@ -95,17 +93,36 @@ class ProductWidget extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 4),
                     child: Row(
                       children: <Widget>[
-                        CustomText(text: "from: ", color: grey, weight: FontWeight.w300, size: 14,),
-                        SizedBox(width: 10,),
+                        const CustomText(
+                          text: "From: ",
+                          color: grey,
+                          weight: FontWeight.w300,
+                          size: 14,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
                         GestureDetector(
-                            onTap: ()async{
+                            onTap: () async {
                               await productProvider.loadProductsByRestaurant(
-                                  restaurantId: product.restaurantId.toString());
-                              await restaurantProvider.loadSingleRestaurant(restaurantId: product.restaurantId.toString());
-                              changeScreen(context, RestaurantScreen(restaurantModel: restaurantProvider.restaurant,));
+                                  restaurantId:
+                                      product.restaurantId.toString());
+                              await restaurantProvider.loadSingleRestaurant(
+                                  restaurantId:
+                                      product.restaurantId.toString());
+                              changeScreen(
+                                  context,
+                                  RestaurantScreen(
+                                    restaurantModel:
+                                        restaurantProvider.restaurant,
+                                  ));
                             },
-                            child: CustomText(text: product.restaurant, color: primary, weight: FontWeight.w300, size: 14,)),
-
+                            child: CustomText(
+                              text: product.restaurant,
+                              color: primary,
+                              weight: FontWeight.w300,
+                              size: 14,
+                            )),
                       ],
                     ),
                   ),
@@ -122,25 +139,25 @@ class ProductWidget extends StatelessWidget {
                               size: 14.0, weight: FontWeight.normal,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 2,
                           ),
-                          Icon(
+                          const Icon(
                             Icons.star,
-                            color: red,
+                            color: Color(0xfff47a5a),
                             size: 16,
                           ),
-                          Icon(
+                          const Icon(
                             Icons.star,
-                            color: red,
+                            color: Color(0xfff47a5a),
                             size: 16,
                           ),
-                          Icon(
+                          const Icon(
                             Icons.star,
-                            color: red,
+                            color: Color(0xfff47a5a),
                             size: 16,
                           ),
-                          Icon(
+                          const Icon(
                             Icons.star,
                             color: grey,
                             size: 16,
@@ -148,8 +165,12 @@ class ProductWidget extends StatelessWidget {
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(right:8.0),
-                        child: CustomText(text: "\$${ product.price / 100}",weight: FontWeight.bold, size: 12,color: black),
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: CustomText(
+                            text: "Ksh${product.price}",
+                            weight: FontWeight.bold,
+                            size: 12,
+                            color: black),
                       ),
                     ],
                   ),
