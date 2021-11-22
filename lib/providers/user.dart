@@ -68,7 +68,8 @@ class UserProvider with ChangeNotifier{
           'email':email.text,
           'uid':result.user!.uid,
           "likedFood": [],
-          "likedRestaurants": []
+          "likedRestaurants": [],
+          "cart": []
         });
       });
       return true;
@@ -112,12 +113,16 @@ class UserProvider with ChangeNotifier{
   }
 
   Future<bool> addToCard({required ProductModel product, required int quantity})async{
-    print("THE PRODUC IS: ${product.toString()}");
+    print("THE PRODUC IS: ${product.name.toString()}");
     print("THE qty IS: ${quantity.toString()}");
+    print("THE uid IS: ${user.uid}");
+    _userModel = await _userServicse.getUserById(user.uid);
 
     try{
       var uuid = Uuid();
       String cartItemId = uuid.v4();
+      // _userModel = await _userServicse.getUserById(user.uid);
+
       List cart = _userModel.cart;
 //      bool itemExists = false;
       Map cartItem ={

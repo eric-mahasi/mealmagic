@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mealmagic/models/cart_item.dart';
 
 class UserModel{
-  static const ID = "id";
-  static const FIRST_NAME = "first_name";
-  static const LAST_NAME = "last_name";
+  static const ID = "uid";
+  static const FIRST_NAME = "first name";
+  static const LAST_NAME = "last name";
   static const EMAIL = "email";
   static const CART = "cart";
 
@@ -13,7 +13,6 @@ class UserModel{
   late String _email;
   late String _id;
   late int _priceSum = 0;
-  late int _quantitySum = 0;
 
   //  getters
   String get first_name => _firstName;
@@ -34,24 +33,16 @@ class UserModel{
     totalCartPrice = snapshot[CART] == null ? 0 :getTotalPrice(cart: snapshot[CART]);
   }
 
-  int getTotalPrice({List? cart}){
+  int getTotalPrice({required List cart}){
     if(cart == null){
       return 0;
     }
     for(Map cartItem in cart){
-      var _priceSumNum;
-      _priceSumNum += cartItem["price"] * cartItem["quantity"];
+      num _priceSumNum;
+      _priceSumNum = _priceSum + cartItem["price"] * cartItem["quantity"];
       _priceSum = _priceSumNum.toInt();
     }
-
     int total = _priceSum;
-
-    print("THE TOTAL IS $total");
-    print("THE TOTAL IS $total");
-    print("THE TOTAL IS $total");
-    print("THE TOTAL IS $total");
-    print("THE TOTAL IS $total");
-
     return total;
   }
 
