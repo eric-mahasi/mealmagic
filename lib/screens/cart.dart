@@ -248,17 +248,7 @@ class _CartScreenState extends State<CartScreen> {
                                                 bool value = await user.removeFromCart(cartItem: cartItem);
                                               if(value){
                                                 user.reloadUserModel();
-                                                  const snackBar = SnackBar(
-                                                      content: Text(
-                                                          "Removed from cart"));
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(snackBar);
                                                 } else {
-                                                  const snackBar = SnackBar(
-                                                      content: Text(
-                                                          "Not removed from cart"));
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(snackBar);
                                                 }
                                               }
                                               const snackBar = SnackBar(
