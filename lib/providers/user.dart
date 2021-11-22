@@ -1,31 +1,33 @@
 import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mealmagic/models/order.dart';
-import 'package:mealmagic/services/order.dart';
-import 'package:mealmagic/services/user.dart';
 import 'package:mealmagic/models/cart_item.dart';
+import 'package:mealmagic/models/order.dart';
 import 'package:mealmagic/models/products.dart';
 import 'package:mealmagic/models/user.dart';
+import 'package:mealmagic/services/order.dart';
+import 'package:mealmagic/services/user.dart';
 import 'package:uuid/uuid.dart';
 
+enum Status { Uninitialized, Authenticated, Authenticating, Unauthenticated }
 
-enum Status{Uninitialized, Authenticated, Authenticating, Unauthenticated}
-
-class UserProvider with ChangeNotifier{
-  FirebaseAuth _auth;
+class UserProvider with ChangeNotifier {
+  final FirebaseAuth _auth;
   late User _user;
   Status _status = Status.Uninitialized;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  UserServices _userServicse = UserServices();
-  OrderServices _orderServices = OrderServices();
+  final UserServices _userServices = UserServices();
+  final OrderServices _orderServices = OrderServices();
   late UserModel _userModel;
 
 //  getter
   UserModel get userModel => _userModel;
+
   Status get status => _status;
+
   User get user => _user;
 
   // public variables
@@ -96,7 +98,7 @@ class UserProvider with ChangeNotifier{
   }
 
   Future<void> reloadUserModel()async{
-    _userModel = await _userServicse.getUserById(user.uid);
+    _userModel = await _userServices.getUserById(user.uid);
     notifyListeners();
   }
 
@@ -107,25 +109,19 @@ class UserProvider with ChangeNotifier{
     }else{
       _user = firebaseUser;
       _status = Status.Authenticated;
-      _userModel = await _userServicse.getUserById(user.uid);
+      _userModel = await _userServices.getUserById(user.uid);
     }
     notifyListeners();
   }
 
   Future<bool> addToCard({required ProductModel product, required int quantity})async{
-    print("THE PRODUC IS: ${product.name.toString()}");
-    print("THE qty IS: ${quantity.toString()}");
-    print("THE uid IS: ${user.uid}");
-    _userModel = await _userServicse.getUserById(user.uid);
+    _userModel = await _userServices.getUserById(user.uid);
 
-    try{
+    try {
       var uuid = Uuid();
       String cartItemId = uuid.v4();
-      // _userModel = await _userServicse.getUserById(user.uid);
-
-      List cart = _userModel.cart;
 //      bool itemExists = false;
-      Map cartItem ={
+      Map cartItem = {
         "id": cartItemId,
         "name": product.name,
         "image": product.image,
@@ -138,11 +134,8 @@ class UserProvider with ChangeNotifier{
 
       CartItemModel item = CartItemModel.fromMap(cartItem);
 //      if(!itemExists){
-      print("CART ITEMS ARE: ${cart.toString()}");
-      _userServicse.addToCart(userId: _user.uid, cartItem: item);
+      _userServices.addToCart(userId: _user.uid, cartItem: item);
 //      }
-
-
 
       return true;
     }catch(e){
@@ -158,10 +151,8 @@ class UserProvider with ChangeNotifier{
   }
 
   Future<bool> removeFromCart({required CartItemModel cartItem})async{
-    print("THE PRODUC IS: ${cartItem.toString()}");
-
     try{
-      _userServicse.removeFromCart(userId: _user.uid, cartItem: cartItem);
+      _userServices.removeFromCart(userId: _user.uid, cartItem: cartItem);
       return true;
     }catch(e){
       print("THE ERROR ${e.toString()}");

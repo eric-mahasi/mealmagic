@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import '../services/product.dart';
+
 import '../models/products.dart';
+import '../services/product.dart';
 
 class ProductProvider with ChangeNotifier{
-  ProductServices _productServices = ProductServices();
+  final ProductServices _productServices = ProductServices();
   List<ProductModel> products = [];
   List<ProductModel> productsByCategory = [];
   List<ProductModel> productsByRestaurant = [];
   List<ProductModel> productsSearched = [];
 
-
-
-  ProductProvider.initialize(){
+  ProductProvider.initialize() {
     loadProducts();
   }
 
-  loadProducts()async{
+  loadProducts() async {
     products = await _productServices.getProducts();
     notifyListeners();
   }
@@ -48,9 +47,6 @@ class ProductProvider with ChangeNotifier{
 
   Future search({required String productName})async{
     productsSearched = await _productServices.searchProducts(productName: productName);
-    print("THE NUMBER OF PRODUCTS DETECTED IS: ${productsSearched.length}");
-    print("THE NUMBER OF PRODUCTS DETECTED IS: ${productsSearched.length}");
-    print("THE NUMBER OF PRODUCTS DETECTED IS: ${productsSearched.length}");
     notifyListeners();
   }
 }

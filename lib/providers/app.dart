@@ -36,25 +36,7 @@ class AppProvider with ChangeNotifier{
   }
 
   getTotalPrice(){
-    print("THE TOTAL SUM IS: $priceSum");
-    print("THE TOTAL SUM IS: $priceSum");
-    print("THE TOTAL SUM IS: $priceSum");
-    print("THE TOTAL SUM IS: $priceSum");
-    print("THE QUANTITY SUM IS: $quantitySum");
-    print("THE QUANTITY SUM IS: $quantitySum");
-    print("THE QUANTITY SUM IS: $quantitySum");
-    print("THE QUANTITY SUM IS: $quantitySum");
-
-
     totalPrice = priceSum * quantitySum;
-    print("THE TOTAL AMOUNT IS: $totalPrice");
-    print("THE TOTAL AMOUNT IS: $totalPrice");
-    print("THE TOTAL AMOUNT IS: $totalPrice");
-    print("THE TOTAL AMOUNT IS: $totalPrice");
-    print("THE TOTAL AMOUNT IS: $totalPrice");
-
-
-
     notifyListeners();
   }
 
