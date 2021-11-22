@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mealmagic/animation/scale_route.dart';
-import 'package:mealmagic/core/sign_in/sign_in.dart';
 import 'package:mealmagic/providers/app.dart';
 import 'package:mealmagic/providers/product.dart';
 import 'package:mealmagic/providers/restaurant.dart';
@@ -51,9 +49,7 @@ class _HomePageState extends State<HomePage> {
                 Icons.notifications_none,
                 color: Color(0xFF3a3737),
               ),
-              onPressed: () {
-                Navigator.push(context, ScaleRoute(page: const SignInPage()));
-              })
+              onPressed: () {})
         ],
       ),
       body: ListView(
