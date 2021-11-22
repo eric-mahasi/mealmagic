@@ -10,7 +10,7 @@ class ProductModel {
   static const RESTAURANT = "restaurant";
   static const RATES = "rates";
   static const USER_LIKES = "userLikes";
-
+  static const FEATURED = "featured";
 
   late String _id;
   late String _name;
@@ -20,19 +20,25 @@ class ProductModel {
   late double _rating;
   late int _price;
   late int _rates;
+  late bool _featured;
 
   String get id => _id;
+
   String get name => _name;
+
   String get restaurant => _restaurant;
+
   String get restaurantId => _restaurantId;
+
   String get image => _image;
 
   double get rating => _rating;
 
   int get price => _price;
 
-
   int get rates => _rates;
+
+  bool get featured => _featured;
 
   // public variable
   bool liked = false;
@@ -46,5 +52,6 @@ class ProductModel {
     _rating = snapshot[RATING];
     _rates = snapshot[RATES];
     _name = snapshot[NAME];
+    _featured = snapshot[FEATURED];
   }
 }

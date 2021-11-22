@@ -55,6 +55,11 @@ class _HomePageState extends State<HomePage> {
       body: ListView(
         children: <Widget>[
           const SearchWidget(),
+          const Text("Popular Foods",
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Color(0xFF3a3a3b),
+                  fontWeight: FontWeight.bold)),
           const PopularFoodsWidget(),
           const Text(
             "Browse restaurants",
