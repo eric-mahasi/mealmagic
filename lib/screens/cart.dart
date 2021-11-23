@@ -185,7 +185,7 @@ class _CartScreenState extends State<CartScreen> {
                             builder: (BuildContext context) {
                               return Dialog(
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20.0)),
+                                    borderRadius: BorderRadius.circular(10.0)),
                                 //this right here
                                 child: SizedBox(
                                   height: 200,
