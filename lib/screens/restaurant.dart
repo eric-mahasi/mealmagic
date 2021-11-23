@@ -15,7 +15,8 @@ import 'details.dart';
 class RestaurantScreen extends StatelessWidget {
   final RestaurantModel restaurantModel;
 
-  const RestaurantScreen({Key? key, required this.restaurantModel}) : super(key: key);
+  const RestaurantScreen({Key? key, required this.restaurantModel})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,55 +25,55 @@ class RestaurantScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
           child: ListView(
+        children: <Widget>[
+          Stack(
             children: <Widget>[
-              Stack(
-                children: <Widget>[
-                  Positioned.fill(
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Loading(),
-                      )),
+              Positioned.fill(
+                  child: Align(
+                alignment: Alignment.center,
+                child: Loading(),
+              )),
 
-                  // restaurant image
-                  ClipRRect(
-                    borderRadius: const BorderRadius.only(
+              // restaurant image
+              ClipRRect(
+                borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(20),
                   bottomRight: Radius.circular(20),
                 ),
-                    child: FadeInImage.memoryNetwork(
-                      placeholder: kTransparentImage,
-                      image: restaurantModel.image,
-                      height: 160,
-                      fit: BoxFit.fill,
-                      width: double.infinity,
-                    ),
-                  ),
+                child: FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,
+                  image: restaurantModel.image,
+                  height: 160,
+                  fit: BoxFit.fill,
+                  width: double.infinity,
+                ),
+              ),
 
-                  // fading black
-                  Container(
-                    height: 160,
-                    decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(
+              // fading black
+              Container(
+                height: 160,
+                decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(20),
                       bottomRight: Radius.circular(20),
                     ),
-                        gradient: LinearGradient(
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.topCenter,
-                          colors: [
-                            Colors.black.withOpacity(0.6),
-                            Colors.black.withOpacity(0.6),
-                            Colors.black.withOpacity(0.6),
-                            Colors.black.withOpacity(0.4),
-                            Colors.black.withOpacity(0.1),
-                            Colors.black.withOpacity(0.05),
-                            Colors.black.withOpacity(0.025),
-                          ],
-                        )),
-                  ),
+                    gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      colors: [
+                        Colors.black.withOpacity(0.6),
+                        Colors.black.withOpacity(0.6),
+                        Colors.black.withOpacity(0.6),
+                        Colors.black.withOpacity(0.4),
+                        Colors.black.withOpacity(0.1),
+                        Colors.black.withOpacity(0.05),
+                        Colors.black.withOpacity(0.025),
+                      ],
+                    )),
+              ),
 
-                  //restaurant name
-                  Positioned.fill(
+              //restaurant name
+              Positioned.fill(
                   bottom: 60,
                   child: Align(
                       alignment: Alignment.bottomCenter,
@@ -106,11 +107,11 @@ class RestaurantScreen extends StatelessWidget {
                       child: Container(
                         width: 50,
                         decoration: BoxDecoration(
-                              color: white,
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: Row(
-                              children: <Widget>[
+                          color: white,
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Row(
+                          children: <Widget>[
                             const Padding(
                               padding: EdgeInsets.all(2.0),
                               child: Icon(
@@ -121,14 +122,14 @@ class RestaurantScreen extends StatelessWidget {
                             ),
                             Text(restaurantModel.rating.toString()),
                           ],
-                            ),
-                          ),
                         ),
-                      )),
+                      ),
+                    ),
+                  )),
 
-                  // close button
-                  Positioned.fill(
-                      top: 5,
+              // close button
+              Positioned.fill(
+                top: 5,
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: Padding(
@@ -156,31 +157,33 @@ class RestaurantScreen extends StatelessWidget {
                         onTap: () {},
                         child: const SmallButton(Icons.favorite),
                       ),
-                        ),)),
-
-
-                ],
-              ),
-              const SizedBox(
+                    ),
+                  )),
+            ],
+          ),
+          const SizedBox(
             height: 10,
           ),
 
-              // products
-              Column(
-                children: productProvider.productsByRestaurant
-                    .map((item) => GestureDetector(
-                  onTap: () {
-                    changeScreen(context, Details(product: item,));
-                  },
-                  child: ProductWidget(
-                    product: item,
-                  ),
-                ))
-                    .toList(),
-              )
-            ],
-
-          )),
+          // products
+          Column(
+            children: productProvider.productsByRestaurant
+                .map((item) => GestureDetector(
+                      onTap: () {
+                        changeScreen(
+                            context,
+                            Details(
+                              product: item,
+                            ));
+                      },
+                      child: ProductWidget(
+                        product: item,
+                      ),
+                    ))
+                .toList(),
+          )
+        ],
+      )),
     );
   }
 }

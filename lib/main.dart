@@ -11,7 +11,7 @@ import 'package:provider/provider.dart';
 import 'core/onboarding/onboarding.dart';
 import 'core/sign_up/sign_up.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
@@ -57,4 +57,3 @@ class ScreensController extends StatelessWidget {
     }
   }
 }
-

@@ -10,8 +10,6 @@ class RestaurantModel {
   static const POPULAR = "popular";
   static const USER_LIKES = "userLikes";
 
-
-
   late int _id;
   late String _name;
   late String _image;
@@ -40,7 +38,6 @@ class RestaurantModel {
 
   // public variable
   bool liked = false;
-
 
   RestaurantModel.fromSnapshot(DocumentSnapshot snapshot) {
     _id = snapshot[ID];

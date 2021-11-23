@@ -144,4 +144,3 @@ class _PopularFoodsWidgetState extends State<PopularFoodsWidget> {
     );
   }
 }
-

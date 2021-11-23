@@ -40,42 +40,44 @@ class UserProvider with ChangeNotifier {
   TextEditingController first_name = TextEditingController();
   TextEditingController last_name = TextEditingController();
 
-
-  UserProvider.initialize(): _auth = FirebaseAuth.instance{
+  UserProvider.initialize() : _auth = FirebaseAuth.instance {
     _auth.authStateChanges().listen(_onStateChanged);
   }
 
-  Future<bool> signIn()async{
-    try{
+  Future<bool> signIn() async {
+    try {
       _status = Status.Authenticating;
       notifyListeners();
-      await _auth.signInWithEmailAndPassword(email: email.text.trim(), password: password.text.trim());
+      await _auth.signInWithEmailAndPassword(
+          email: email.text.trim(), password: password.text.trim());
       return true;
-    }catch(e){
+    } catch (e) {
       _status = Status.Unauthenticated;
       notifyListeners();
       return false;
     }
   }
 
-
-  Future<bool> signUp()async{
-    try{
+  Future<bool> signUp() async {
+    try {
       _status = Status.Authenticating;
       notifyListeners();
-      await _auth.createUserWithEmailAndPassword(email: email.text.trim(), password: password.text.trim()).then((result){
+      await _auth
+          .createUserWithEmailAndPassword(
+              email: email.text.trim(), password: password.text.trim())
+          .then((result) {
         _firestore.collection('users').doc(result.user!.uid).set({
-          'first name':first_name.text,
-          'last name':last_name.text,
-          'email':email.text,
-          'uid':result.user!.uid,
+          'first name': first_name.text,
+          'last name': last_name.text,
+          'email': email.text,
+          'uid': result.user!.uid,
           "likedFood": [],
           "likedRestaurants": [],
           "cart": []
         });
       });
       return true;
-    }catch(e){
+    } catch (e) {
       _status = Status.Unauthenticated;
       notifyListeners();
       print(e.toString());
@@ -83,30 +85,29 @@ class UserProvider with ChangeNotifier {
     }
   }
 
-  Future signOut()async{
+  Future signOut() async {
     _auth.signOut();
     _status = Status.Unauthenticated;
     notifyListeners();
     return Future.delayed(Duration.zero);
   }
 
-  void clearController(){
+  void clearController() {
     first_name.text = "";
     last_name.text = "";
     password.text = "";
     email.text = "";
   }
 
-  Future<void> reloadUserModel()async{
+  Future<void> reloadUserModel() async {
     _userModel = await _userServices.getUserById(user.uid);
     notifyListeners();
   }
 
-
-  Future<void> _onStateChanged(User? firebaseUser) async{
-    if(firebaseUser == null){
+  Future<void> _onStateChanged(User? firebaseUser) async {
+    if (firebaseUser == null) {
       _status = Status.Unauthenticated;
-    }else{
+    } else {
       _user = firebaseUser;
       _status = Status.Authenticated;
       _userModel = await _userServices.getUserById(user.uid);
@@ -114,7 +115,8 @@ class UserProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<bool> addToCard({required ProductModel product, required int quantity})async{
+  Future<bool> addToCard(
+      {required ProductModel product, required int quantity}) async {
     _userModel = await _userServices.getUserById(user.uid);
 
     try {
@@ -138,26 +140,24 @@ class UserProvider with ChangeNotifier {
 //      }
 
       return true;
-    }catch(e){
+    } catch (e) {
       print("THE ERROR ${e.toString()}");
       return false;
     }
-
   }
 
-  getOrders()async{
+  getOrders() async {
     orders = await _orderServices.getUserOrders(userId: _user.uid);
     notifyListeners();
   }
 
-  Future<bool> removeFromCart({required CartItemModel cartItem})async{
-    try{
+  Future<bool> removeFromCart({required CartItemModel cartItem}) async {
+    try {
       _userServices.removeFromCart(userId: _user.uid, cartItem: cartItem);
       return true;
-    }catch(e){
+    } catch (e) {
       print("THE ERROR ${e.toString()}");
       return false;
     }
-
   }
 }

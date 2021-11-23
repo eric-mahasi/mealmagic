@@ -51,9 +51,11 @@ class _DetailsState extends State<Details> {
       ),
       backgroundColor: white,
       body: SafeArea(
-        child: app.isLoading ? Loading() : Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+        child: app.isLoading
+            ? Loading()
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
                   CircleAvatar(
                     radius: 120,
                     backgroundImage: NetworkImage(widget.product.image),
@@ -96,13 +98,13 @@ class _DetailsState extends State<Details> {
                                 });
                               }
                             }),
-                ),
-
-                GestureDetector(
-                  onTap: ()async{
-                    app.changeLoading();
-                    bool value =  await user.addToCard(product: widget.product, quantity: quantity);
-                    if(value) {
+                      ),
+                      GestureDetector(
+                        onTap: () async {
+                          app.changeLoading();
+                          bool value = await user.addToCard(
+                              product: widget.product, quantity: quantity);
+                          if (value) {
                             const snackBar =
                                 SnackBar(content: Text("Added to cart"));
                             ScaffoldMessenger.of(context)
@@ -117,20 +119,27 @@ class _DetailsState extends State<Details> {
                                 .showSnackBar(snackBar);
                           }
                         },
-                  child: Container(
-                    decoration: BoxDecoration(
+                        child: Container(
+                          decoration: BoxDecoration(
                               color: const Color(0xfff47a5a),
                               borderRadius: BorderRadius.circular(10)),
-                    child: app.isLoading ? Loading() : Padding(
-                      padding: const EdgeInsets.fromLTRB(28,12,28,12),
-                      child: CustomText(text: "Add $quantity To Cart",color: white,size: 22,weight: FontWeight.w300,),
-                    ),
-
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: IconButton(
+                          child: app.isLoading
+                              ? Loading()
+                              : Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(28, 12, 28, 12),
+                                  child: CustomText(
+                                    text: "Add $quantity To Cart",
+                                    color: white,
+                                    size: 22,
+                                    weight: FontWeight.w300,
+                                  ),
+                                ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: IconButton(
                             icon: const Icon(
                               Icons.add,
                               size: 36,
@@ -141,12 +150,11 @@ class _DetailsState extends State<Details> {
                                 quantity += 1;
                               });
                             }),
-                ),
-              ],
-            ),
-
-          ],
-        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
       ),
     );
   }

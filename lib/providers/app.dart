@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-enum SearchBy{PRODUCTS, RESTAURANTS}
+enum SearchBy { PRODUCTS, RESTAURANTS }
 
-class AppProvider with ChangeNotifier{
+class AppProvider with ChangeNotifier {
   bool isLoading = false;
   SearchBy search = SearchBy.PRODUCTS;
   String filterBy = "Products";
@@ -10,34 +10,33 @@ class AppProvider with ChangeNotifier{
   int priceSum = 0;
   int quantitySum = 0;
 
-  void changeLoading(){
+  void changeLoading() {
     isLoading = !isLoading;
     notifyListeners();
   }
 
-  void changeSearchBy({required SearchBy newSearchBy}){
+  void changeSearchBy({required SearchBy newSearchBy}) {
     search = newSearchBy;
-    if(newSearchBy == SearchBy.PRODUCTS){
+    if (newSearchBy == SearchBy.PRODUCTS) {
       filterBy = "Products";
-    }else{
+    } else {
       filterBy = "Restaurants";
     }
     notifyListeners();
   }
 
-  addPrice({required int newPrice}){
+  addPrice({required int newPrice}) {
     priceSum += newPrice;
     notifyListeners();
   }
 
-  addQuantity({required int newQuantity}){
+  addQuantity({required int newQuantity}) {
     quantitySum += newQuantity;
     notifyListeners();
   }
 
-  getTotalPrice(){
+  getTotalPrice() {
     totalPrice = priceSum * quantitySum;
     notifyListeners();
   }
-
 }

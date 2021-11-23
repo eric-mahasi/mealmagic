@@ -19,8 +19,7 @@ class ProductWidget extends StatelessWidget {
     final restaurantProvider = Provider.of<RestaurantProvider>(context);
     final productProvider = Provider.of<ProductProvider>(context);
 
-
-    return  Padding(
+    return Padding(
       padding: const EdgeInsets.only(left: 4, right: 4, top: 4, bottom: 10),
       child: Container(
         height: 110,
@@ -51,13 +50,15 @@ class ProductWidget extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   Row(
-                    mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: CustomText(
-                          text: product.name, size: 12, weight: FontWeight.normal, color: black,
+                          text: product.name,
+                          size: 12,
+                          weight: FontWeight.normal,
+                          color: black,
                         ),
                       ),
                       Padding(
@@ -84,11 +85,9 @@ class ProductWidget extends StatelessWidget {
                       )
                     ],
                   ),
-
                   const SizedBox(
                     height: 25,
                   ),
-
                   Padding(
                     padding: const EdgeInsets.only(left: 4),
                     child: Row(
@@ -136,7 +135,8 @@ class ProductWidget extends StatelessWidget {
                             child: CustomText(
                               text: product.rating.toString(),
                               color: grey,
-                              size: 14.0, weight: FontWeight.normal,
+                              size: 14.0,
+                              weight: FontWeight.normal,
                             ),
                           ),
                           const SizedBox(
@@ -174,8 +174,6 @@ class ProductWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-
-
                 ],
               ),
             )

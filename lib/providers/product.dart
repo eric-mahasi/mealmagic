@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/products.dart';
 import '../services/product.dart';
 
-class ProductProvider with ChangeNotifier{
+class ProductProvider with ChangeNotifier {
   final ProductServices _productServices = ProductServices();
   List<ProductModel> products = [];
   List<ProductModel> productsByCategory = [];
@@ -19,13 +19,15 @@ class ProductProvider with ChangeNotifier{
     notifyListeners();
   }
 
-  Future loadProductsByCategory({required String categoryName})async{
-    productsByCategory = await _productServices.getProductsOfCategory(category: categoryName);
+  Future loadProductsByCategory({required String categoryName}) async {
+    productsByCategory =
+        await _productServices.getProductsOfCategory(category: categoryName);
     notifyListeners();
   }
 
-  Future loadProductsByRestaurant({required String restaurantId})async{
-    productsByRestaurant = await _productServices.getProductsByRestaurant(id: restaurantId);
+  Future loadProductsByRestaurant({required String restaurantId}) async {
+    productsByRestaurant =
+        await _productServices.getProductsByRestaurant(id: restaurantId);
     notifyListeners();
   }
 
@@ -45,8 +47,9 @@ class ProductProvider with ChangeNotifier{
 //      }
 //  }
 
-  Future search({required String productName})async{
-    productsSearched = await _productServices.searchProducts(productName: productName);
+  Future search({required String productName}) async {
+    productsSearched =
+        await _productServices.searchProducts(productName: productName);
     notifyListeners();
   }
 }

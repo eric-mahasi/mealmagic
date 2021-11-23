@@ -20,7 +20,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-
     final app = Provider.of<AppProvider>(context);
     final restaurantProvider = Provider.of<RestaurantProvider>(context);
     final productProvider = Provider.of<ProductProvider>(context);
@@ -79,17 +78,16 @@ class _HomePageState extends State<HomePage> {
                           app.changeLoading();
 
                           changeScreen(
-                  context,
-                  RestaurantScreen(
-                    restaurantModel: item,
-                  ));
-            },
-            child: RestaurantWidget(
-              restaurant: item,
-            ),
-          ))
-              .toList()),
-
+                              context,
+                              RestaurantScreen(
+                                restaurantModel: item,
+                              ));
+                        },
+                        child: RestaurantWidget(
+                          restaurant: item,
+                        ),
+                      ))
+                  .toList()),
         ],
       ),
       bottomNavigationBar: const BottomNavBarWidget(),

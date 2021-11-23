@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../models/products.dart';
 
 class ProductServices {
@@ -14,13 +15,13 @@ class ProductServices {
         return products;
       });
 
-  void likeOrDislikeProduct({required String id, required List<String> userLikes}){
-    _firestore.collection(collection).doc(id).update({
-      "userLikes": userLikes
-    });
+  void likeOrDislikeProduct(
+      {required String id, required List<String> userLikes}) {
+    _firestore.collection(collection).doc(id).update({"userLikes": userLikes});
   }
 
-  Future<List<ProductModel>> getProductsByRestaurant({required String id}) async =>
+  Future<List<ProductModel>> getProductsByRestaurant(
+          {required String id}) async =>
       _firestore
           .collection(collection)
           .where("restaurantId", isEqualTo: id)
@@ -33,7 +34,8 @@ class ProductServices {
         return products;
       });
 
-  Future<List<ProductModel>> getProductsOfCategory({required String category}) async =>
+  Future<List<ProductModel>> getProductsOfCategory(
+          {required String category}) async =>
       _firestore
           .collection(collection)
           .where("category", isEqualTo: category)
@@ -56,11 +58,11 @@ class ProductServices {
         .endAt([searchKey + '\uf8ff'])
         .get()
         .then((result) {
-      List<ProductModel> products = [];
-      for (DocumentSnapshot product in result.docs) {
-        products.add(ProductModel.fromSnapshot(product));
-      }
-      return products;
-    });
+          List<ProductModel> products = [];
+          for (DocumentSnapshot product in result.docs) {
+            products.add(ProductModel.fromSnapshot(product));
+          }
+          return products;
+        });
   }
 }

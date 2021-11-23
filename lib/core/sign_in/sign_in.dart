@@ -181,17 +181,18 @@ class _SignInPageState extends State<SignInPage> {
                             ),
                             onPressed: () async {
                               if (_formKey.currentState!.validate()) {
-                                  if (!await authProvider.signIn()) {
-                                    const snackBar = SnackBar(
-                                        content: Text("Log in failed"));
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                        snackBar);
-                                    return;
-                                  }
+                                if (!await authProvider.signIn()) {
+                                  const snackBar =
+                                      SnackBar(content: Text("Log in failed"));
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar);
+                                  return;
+                                }
                                 restaurantProvider.loadRestaurants();
                                 productProvider.loadProducts();
                                 authProvider.clearController();
-                                changeScreenReplacement(context, const HomePage());
+                                changeScreenReplacement(
+                                    context, const HomePage());
                               }
                             }),
                       ),

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mealmagic/models/cart_item.dart';
 import 'package:mealmagic/models/user.dart';
 
-class UserServices{
+class UserServices {
   String collection = "users";
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
@@ -11,27 +11,25 @@ class UserServices{
     _firestore.collection(collection).doc(id).set(values);
   }
 
-  void updateUserData(Map<String, dynamic> values){
+  void updateUserData(Map<String, dynamic> values) {
     _firestore.collection(collection).doc(values['id']).update(values);
   }
 
-  void addToCart({required String userId, required CartItemModel cartItem}){
-    print("THE USER ID IS: $userId");
-    print("cart items are: ${cartItem.toString()}");
+  void addToCart({required String userId, required CartItemModel cartItem}) {
     _firestore.collection(collection).doc(userId).update({
       "cart": FieldValue.arrayUnion([cartItem.toMap()])
     });
   }
 
-  void removeFromCart({required String userId, required CartItemModel cartItem}){
-    print("THE USER ID IS: $userId");
-    print("cart items are: ${cartItem.toString()}");
+  void removeFromCart(
+      {required String userId, required CartItemModel cartItem}) {
     _firestore.collection(collection).doc(userId).update({
       "cart": FieldValue.arrayRemove([cartItem.toMap()])
     });
   }
 
-  Future<UserModel> getUserById(String id) => _firestore.collection(collection).doc(id).get().then((doc){
-    return UserModel.fromSnapshot(doc);
-  });
+  Future<UserModel> getUserById(String id) =>
+      _firestore.collection(collection).doc(id).get().then((doc) {
+        return UserModel.fromSnapshot(doc);
+      });
 }

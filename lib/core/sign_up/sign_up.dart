@@ -166,7 +166,6 @@ class _SignUpPageState extends State<SignUpPage> {
                               fontFamily: defaultFontFamily,
                               fontSize: defaultFontSize),
                           hintText: "Email",
-
                         ),
                       ),
                       const SizedBox(
@@ -240,15 +239,18 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                             onPressed: () async {
                               if (_formKey.currentState!.validate()) {
-                                if(!await authProvider.signUp()){
-                                  const snackBar = SnackBar(content: Text("Sign up failed"));
-                                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                if (!await authProvider.signUp()) {
+                                  const snackBar =
+                                      SnackBar(content: Text("Sign up failed"));
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar);
                                   return;
                                 }
                                 restaurantProvider.loadRestaurants();
                                 productProvider.loadProducts();
                                 authProvider.clearController();
-                                changeScreenReplacement(context, const HomePage());
+                                changeScreenReplacement(
+                                    context, const HomePage());
                               }
                             }),
                       ),

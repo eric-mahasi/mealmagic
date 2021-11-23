@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/restaurant.dart';
 import '../services/restaurant.dart';
 
-class RestaurantProvider with ChangeNotifier{
+class RestaurantProvider with ChangeNotifier {
   final RestaurantServices _restaurantServices = RestaurantServices();
   List<RestaurantModel> restaurants = [];
   List<RestaurantModel> searchedRestaurants = [];
@@ -19,13 +19,14 @@ class RestaurantProvider with ChangeNotifier{
     notifyListeners();
   }
 
-  loadSingleRestaurant({required String restaurantId}) async{
+  loadSingleRestaurant({required String restaurantId}) async {
     restaurant = await _restaurantServices.getRestaurantById(id: restaurantId);
     notifyListeners();
   }
 
-  Future search({required String name})async{
-    searchedRestaurants = await _restaurantServices.searchRestaurant(restaurantName: name);
+  Future search({required String name}) async {
+    searchedRestaurants =
+        await _restaurantServices.searchRestaurant(restaurantName: name);
     notifyListeners();
   }
 }

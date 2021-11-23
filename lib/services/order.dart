@@ -2,15 +2,21 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mealmagic/models/cart_item.dart';
 import 'package:mealmagic/models/order.dart';
 
-class OrderServices{
+class OrderServices {
   String collection = "orders";
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  void createOrder({required String userId ,required String id,required String description,required String status ,required List<CartItemModel> cart, required int totalPrice}) {
+  void createOrder(
+      {required String userId,
+      required String id,
+      required String description,
+      required String status,
+      required List<CartItemModel> cart,
+      required int totalPrice}) {
     List<Map> convertedCart = [];
     List<String> restaurantIds = [];
 
-    for(CartItemModel item in cart){
+    for (CartItemModel item in cart) {
       convertedCart.add(item.toMap());
       restaurantIds.add(item.restaurantId);
     }
@@ -39,5 +45,4 @@ class OrderServices{
         }
         return orders;
       });
-
 }

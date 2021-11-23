@@ -31,11 +31,14 @@ class _CartScreenState extends State<CartScreen> {
         iconTheme: const IconThemeData(color: black),
         backgroundColor: white,
         elevation: 0.0,
-        title: const CustomText(
-            text: "Shopping Cart",
-            size: 12,
-            weight: FontWeight.normal,
-            color: black),
+        title: const Text(
+          "Cart Items",
+          style: TextStyle(
+              color: Color(0xFF3a3737),
+              fontWeight: FontWeight.w600,
+              fontSize: 18),
+          textAlign: TextAlign.center,
+        ),
         leading: IconButton(
             icon: const Icon(Icons.close),
             onPressed: () {
@@ -43,90 +46,94 @@ class _CartScreenState extends State<CartScreen> {
             }),
       ),
       backgroundColor: white,
-      body: app.isLoading ? Loading() : ListView.builder(
-          itemCount: user.userModel.cart.length,
-          itemBuilder: (_, index) {
-
-            return Padding(
-              padding: const EdgeInsets.all(16),
-              child: Container(
-                height: 120,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: white,
-                    boxShadow: [
-                      BoxShadow(
-                          color: red.withOpacity(0.2),
+      body: app.isLoading
+          ? Loading()
+          : ListView.builder(
+              itemCount: user.userModel.cart.length,
+              itemBuilder: (_, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Container(
+                    height: 120,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: white,
+                        boxShadow: [
+                          BoxShadow(
+                              color: const Color(0xfff47a5a).withOpacity(0.2),
                               offset: const Offset(3, 2),
                               blurRadius: 30)
-                    ]),
-                child: Row(
-                  children: <Widget>[
-                    ClipRRect(
-                      borderRadius: const BorderRadius.only(
+                        ]),
+                    child: Row(
+                      children: <Widget>[
+                        ClipRRect(
+                          borderRadius: const BorderRadius.only(
                             bottomLeft: Radius.circular(20),
                             topLeft: Radius.circular(20),
                           ),
-                      child: Image.network(
-                        user.userModel.cart[index].image,
-                        height: 120,
-                        width: 140,
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    const SizedBox(
+                          child: Image.network(
+                            user.userModel.cart[index].image,
+                            height: 120,
+                            width: 140,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                        const SizedBox(
                           width: 10,
                         ),
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          RichText(
-                            text: TextSpan(children: [
-                              TextSpan(
-                                  text: user.userModel.cart[index].name+ "\n",
-                                  style: const TextStyle(
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              RichText(
+                                text: TextSpan(children: [
+                                  TextSpan(
+                                      text: user.userModel.cart[index].name +
+                                          "\n",
+                                      style: const TextStyle(
                                           color: black,
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold)),
-                              TextSpan(
+                                  TextSpan(
                                       text:
                                           "Ksh${user.userModel.cart[index].price} \n\n",
                                       style: const TextStyle(
                                           color: black,
                                           fontSize: 18,
                                           fontWeight: FontWeight.w300)),
-                              const TextSpan(
+                                  const TextSpan(
                                       text: "Quantity: ",
                                       style: TextStyle(
                                           color: grey,
                                           fontSize: 16,
                                           fontWeight: FontWeight.w400)),
-                              TextSpan(
-                                  text: user.userModel.cart[index].quantity.toString(),
-                                  style: const TextStyle(
+                                  TextSpan(
+                                      text: user.userModel.cart[index].quantity
+                                          .toString(),
+                                      style: const TextStyle(
                                           color: primary,
                                           fontSize: 16,
                                           fontWeight: FontWeight.w400)),
-                            ]),
-                          ),
-                          IconButton(
-                              icon: const Icon(
+                                ]),
+                              ),
+                              IconButton(
+                                  icon: const Icon(
                                     Icons.delete,
                                     color: red,
                                   ),
-                              onPressed: ()async{
-                                app.changeLoading();
-                                bool value = await user.removeFromCart(cartItem: user.userModel.cart[index]);
-                                if(value){
-                                  user.reloadUserModel();
+                                  onPressed: () async {
+                                    app.changeLoading();
+                                    bool value = await user.removeFromCart(
+                                        cartItem: user.userModel.cart[index]);
+                                    if (value) {
+                                      user.reloadUserModel();
                                       const snackBar = SnackBar(
                                           content: Text("Removed from cart"));
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(snackBar);
                                       app.changeLoading();
                                       return;
-                                    }else {
+                                    } else {
                                       const snackBar = SnackBar(
                                           content:
                                               Text("Not removed from cart"));
@@ -134,15 +141,15 @@ class _CartScreenState extends State<CartScreen> {
                                           .showSnackBar(snackBar);
                                       app.changeLoading();
                                     }
-                                  })
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            );
-          }),
+                                  }),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              }),
       bottomNavigationBar: SizedBox(
         height: 70,
         child: Padding(
@@ -213,8 +220,8 @@ class _CartScreenState extends State<CartScreen> {
                           builder: (BuildContext context) {
                             return Dialog(
                               shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                  BorderRadius.circular(20.0)), //this right here
+                                  borderRadius: BorderRadius.circular(20.0)),
+                              //this right here
                               child: SizedBox(
                                 height: 200,
                                 child: Padding(
@@ -245,11 +252,12 @@ class _CartScreenState extends State<CartScreen> {
                                                   cart: user.userModel.cart);
                                               for (CartItemModel cartItem
                                                   in user.userModel.cart) {
-                                                bool value = await user.removeFromCart(cartItem: cartItem);
-                                              if(value){
-                                                user.reloadUserModel();
-                                                } else {
-                                                }
+                                                bool value =
+                                                    await user.removeFromCart(
+                                                        cartItem: cartItem);
+                                                if (value) {
+                                                  user.reloadUserModel();
+                                                } else {}
                                               }
                                               const snackBar = SnackBar(
                                                   content:
@@ -263,10 +271,9 @@ class _CartScreenState extends State<CartScreen> {
                                               style: TextStyle(
                                                   color: Colors.white),
                                             ),
-                                          style: ElevatedButton.styleFrom(
-                                            primary: green,
-                                            )
-                                        ),
+                                            style: ElevatedButton.styleFrom(
+                                              primary: green,
+                                            )),
                                       ),
                                       SizedBox(
                                         width: 320.0,
@@ -281,10 +288,8 @@ class _CartScreenState extends State<CartScreen> {
                                             ),
                                             style: ElevatedButton.styleFrom(
                                               primary: const Color(0xfff47a5a),
-                                            )
-                                        ),
+                                            )),
                                       )
-
                                     ],
                                   ),
                                 ),
