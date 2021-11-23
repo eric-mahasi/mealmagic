@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:mealmagic/models/cart_item.dart';
 import 'package:mealmagic/providers/app.dart';
 import 'package:mealmagic/providers/user.dart';
-import 'package:mealmagic/services/order.dart';
+import 'package:mealmagic/services/screen_navigation.dart';
 import 'package:mealmagic/services/style.dart';
 import 'package:mealmagic/widgets/custom_text.dart';
 import 'package:mealmagic/widgets/loading.dart';
 import 'package:provider/provider.dart';
-import 'package:uuid/uuid.dart';
+
+import 'checkout.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -18,7 +18,6 @@ class CartScreen extends StatefulWidget {
 
 class _CartScreenState extends State<CartScreen> {
   final _key = GlobalKey<ScaffoldState>();
-  final OrderServices _orderServices = OrderServices();
 
   @override
   Widget build(BuildContext context) {
@@ -215,90 +214,10 @@ class _CartScreenState extends State<CartScreen> {
                             });
                         return;
                       }
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return Dialog(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0)),
-                              //this right here
-                              child: SizedBox(
-                                height: 200,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(12.0),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'You will be charged Ksh${user.userModel.totalCartPrice} upon delivery!',
-                                        textAlign: TextAlign.center,
-                                      ),
-                                      SizedBox(
-                                        width: 320.0,
-                                        child: ElevatedButton(
-                                            onPressed: () async {
-                                              var uuid = const Uuid();
-                                              String id = uuid.v4();
-                                              _orderServices.createOrder(
-                                                  userId: user.user.uid,
-                                                  id: id,
-                                                  description:
-                                                      "Some random description",
-                                                  status: "complete",
-                                                  totalPrice: user
-                                                      .userModel.totalCartPrice,
-                                                  cart: user.userModel.cart);
-                                              for (CartItemModel cartItem
-                                                  in user.userModel.cart) {
-                                                bool value =
-                                                    await user.removeFromCart(
-                                                        cartItem: cartItem);
-                                                if (value) {
-                                                  user.reloadUserModel();
-                                                } else {}
-                                              }
-                                              const snackBar = SnackBar(
-                                                  content:
-                                                      Text("Order created"));
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(snackBar);
-                                              Navigator.pop(context);
-                                            },
-                                            child: const Text(
-                                              "Accept",
-                                              style: TextStyle(
-                                                  color: Colors.white),
-                                            ),
-                                            style: ElevatedButton.styleFrom(
-                                              primary: green,
-                                            )),
-                                      ),
-                                      SizedBox(
-                                        width: 320.0,
-                                        child: ElevatedButton(
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                            child: const Text(
-                                              "Reject",
-                                              style: TextStyle(
-                                                  color: Colors.white),
-                                            ),
-                                            style: ElevatedButton.styleFrom(
-                                              primary: const Color(0xfff47a5a),
-                                            )),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            );
-                          });
+                      changeScreen(context, Checkout());
                     },
                     child: const CustomText(
-                      text: "Check out",
+                      text: "Proceed to check out",
                       size: 20,
                       color: white,
                       weight: FontWeight.normal,
