@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "348378098665",
+    "project_id": "meal-magic-73e43",
+    "storage_bucket": "meal-magic-73e43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:348378098665:android:b971210352387e9a7e3978",
+        "android_client_info": {
+          "package_name": "com.eric.mealmagic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "348378098665-klo1ethg4nb99ocu61ahhttb8igp6a6b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxU_99FlqnjeVUMmIbtUl8bykPJsY9ynM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "348378098665-klo1ethg4nb99ocu61ahhttb8igp6a6b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
