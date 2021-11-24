@@ -30,7 +30,7 @@ class Checkout extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         leading: IconButton(
-            icon: const Icon(Icons.close),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.pop(context);
             }),
