@@ -21,6 +21,24 @@ A user is able to:
 * Using Google's Firebase for user authentication
 * Using Google's Firebase as a backend database
 
+# Screenshots
+
+### Sign in & Sign up Screen
+
+<img src="ui/sing in.png" height="500em" /> &nbsp;&nbsp;&nbsp;&nbsp; <img src="ui/sign up" height="500em" />
+
+### Home Page
+
+<img src="ui/home page.png" height="500em" />
+
+### Restaurant
+
+<img src="ui/restaurant menu.png" height="500em" />
+
+### Food Details Screen & Add To Cart Screen
+
+<img src="ui/food detail.png" height="500em" /> &nbsp;&nbsp;&nbsp;&nbsp; <img src="ui/cart.png" height="500em" />
+
 # License
 
 This project is licensed under the MIT license - see the
