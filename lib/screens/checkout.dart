@@ -11,6 +11,8 @@ class Checkout extends StatelessWidget {
   Checkout({Key? key}) : super(key: key);
   final _key = GlobalKey<ScaffoldState>();
   final OrderServices _orderServices = OrderServices();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _addressController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,17 +37,60 @@ class Checkout extends StatelessWidget {
               Navigator.pop(context);
             }),
       ),
-      body: Column(children: const <Widget>[
-        Text("Select your payment method",
+      body: Column(children: <Widget>[
+        const Text("Select your payment method",
             style: TextStyle(
                 fontSize: 20,
                 color: Color(0xFF3a3a3b),
                 fontWeight: FontWeight.bold)),
-        SizedBox(
+        const SizedBox(
           width: 10,
           height: 10,
         ),
-        PaymentMethodsWidget(),
+        const PaymentMethodsWidget(),
+        const Text("Enter an address you want the food delivered to",
+            style: TextStyle(
+                fontSize: 18,
+                color: Color(0xFF3a3a3b),
+                fontWeight: FontWeight.bold)),
+        Form(
+            key: _formKey,
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  TextFormField(
+                    showCursor: true,
+                    controller: _addressController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter an delivery address';
+                      }
+                      return null;
+                    },
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        borderSide: BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
+                        ),
+                      ),
+                      filled: true,
+                      prefixIcon: Icon(
+                        Icons.pin_drop,
+                        color: Color(0xFF666666),
+                        size: 12,
+                      ),
+                      fillColor: Color(0xFFF2F3F5),
+                      hintStyle:
+                          TextStyle(color: Color(0xFF666666), fontSize: 12),
+                      hintText: "Delivery address",
+                    ),
+                  ),
+                ]))
       ]),
       bottomNavigationBar: SizedBox(
         height: 70,
@@ -98,128 +143,130 @@ class Checkout extends StatelessWidget {
                               );
                             });
                         return;
-                      }
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return Dialog(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0)),
-                              //this right here
-                              child: SizedBox(
-                                height: 200,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(12.0),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'You will be charged Ksh${user.userModel.totalCartPrice} upon delivery!',
-                                        textAlign: TextAlign.center,
-                                      ),
-                                      SizedBox(
-                                        width: 320.0,
-                                        child: ElevatedButton(
-                                            onPressed: () async {
-                                              var uuid = const Uuid();
-                                              String id = uuid.v4();
-                                              _orderServices.createOrder(
-                                                  userId: user.user.uid,
-                                                  id: id,
-                                                  description:
-                                                      "Some random description",
-                                                  status: "complete",
-                                                  totalPrice: user
-                                                      .userModel.totalCartPrice,
-                                                  cart: user.userModel.cart);
-                                              for (CartItemModel cartItem
-                                                  in user.userModel.cart) {
-                                                bool value =
-                                                    await user.removeFromCart(
-                                                        cartItem: cartItem);
-                                                if (value) {
-                                                  user.reloadUserModel();
-                                                } else {}
-                                              }
-                                              Navigator.pop(context);
-                                              showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (BuildContext context) {
-                                                    return Dialog(
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10.0)),
-                                                      child: SizedBox(
-                                                        height: 200,
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(12.0),
-                                                          child: Column(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .center,
-                                                                children: const <
-                                                                    Widget>[
-                                                                  Text(
-                                                                    'Order placed successfully',
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .center,
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ],
+                      } else if (_formKey.currentState!.validate()) {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Dialog(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                //this right here
+                                child: SizedBox(
+                                  height: 200,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'You will be charged Ksh${user.userModel.totalCartPrice}. Order will be delivered to ${_addressController.text}',
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        SizedBox(
+                                          width: 320.0,
+                                          child: ElevatedButton(
+                                              onPressed: () async {
+                                                var uuid = const Uuid();
+                                                String id = uuid.v4();
+                                                _orderServices.createOrder(
+                                                    userId: user.user.uid,
+                                                    id: id,
+                                                    description:
+                                                        "Some random description",
+                                                    status: "complete",
+                                                    totalPrice: user.userModel
+                                                        .totalCartPrice,
+                                                    cart: user.userModel.cart);
+                                                for (CartItemModel cartItem
+                                                    in user.userModel.cart) {
+                                                  bool value =
+                                                      await user.removeFromCart(
+                                                          cartItem: cartItem);
+                                                  if (value) {
+                                                    user.reloadUserModel();
+                                                  } else {}
+                                                }
+                                                Navigator.pop(context);
+                                                showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (BuildContext context) {
+                                                      return Dialog(
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10.0)),
+                                                        child: SizedBox(
+                                                          height: 200,
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(12.0),
+                                                            child: Column(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  children: const <
+                                                                      Widget>[
+                                                                    Text(
+                                                                      'Order placed successfully',
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .center,
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ],
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    );
-                                                  });
-                                            },
-                                            child: const Text(
-                                              "Accept",
-                                              style: TextStyle(
-                                                  color: Colors.white),
-                                            ),
-                                            style: ElevatedButton.styleFrom(
-                                              primary: green,
-                                            )),
-                                      ),
-                                      SizedBox(
-                                        width: 320.0,
-                                        child: ElevatedButton(
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                            child: const Text(
-                                              "Reject",
-                                              style: TextStyle(
-                                                  color: Colors.white),
-                                            ),
-                                            style: ElevatedButton.styleFrom(
-                                              primary: const Color(0xfff47a5a),
-                                            )),
-                                      )
-                                    ],
+                                                      );
+                                                    });
+                                              },
+                                              child: const Text(
+                                                "Accept",
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                              style: ElevatedButton.styleFrom(
+                                                primary: green,
+                                              )),
+                                        ),
+                                        SizedBox(
+                                          width: 320.0,
+                                          child: ElevatedButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: const Text(
+                                                "Reject",
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                              style: ElevatedButton.styleFrom(
+                                                primary:
+                                                    const Color(0xfff47a5a),
+                                              )),
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            );
-                          });
+                              );
+                            });
+                      }
                     },
                     child: const CustomText(
                       text: "Check out",
