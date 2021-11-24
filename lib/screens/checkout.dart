@@ -45,7 +45,7 @@ class Checkout extends StatelessWidget {
           width: 10,
           height: 10,
         ),
-        MyStatefulWidget(),
+        PaymentMethodsWidget(),
       ]),
       bottomNavigationBar: SizedBox(
         height: 70,
@@ -238,14 +238,14 @@ class Checkout extends StatelessWidget {
 
 enum PaymentMethod { cash, mpesa }
 
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key? key}) : super(key: key);
+class PaymentMethodsWidget extends StatefulWidget {
+  const PaymentMethodsWidget({Key? key}) : super(key: key);
 
   @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+  State<PaymentMethodsWidget> createState() => _PaymentMethodsWidgetState();
 }
 
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+class _PaymentMethodsWidgetState extends State<PaymentMethodsWidget> {
   PaymentMethod? _method = PaymentMethod.cash;
 
   @override
