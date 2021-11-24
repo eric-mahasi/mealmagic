@@ -241,7 +241,8 @@ class Checkout extends StatelessWidget {
                                                     color: Colors.white),
                                               ),
                                               style: ElevatedButton.styleFrom(
-                                                primary: green,
+                                                primary:
+                                                    const Color(0xfff47a5a),
                                               )),
                                         ),
                                         SizedBox(
@@ -253,11 +254,10 @@ class Checkout extends StatelessWidget {
                                               child: const Text(
                                                 "Reject",
                                                 style: TextStyle(
-                                                    color: Colors.white),
+                                                    color: Colors.black),
                                               ),
                                               style: ElevatedButton.styleFrom(
-                                                primary:
-                                                    const Color(0xfff47a5a),
+                                                primary: Colors.white,
                                               )),
                                         )
                                       ],
