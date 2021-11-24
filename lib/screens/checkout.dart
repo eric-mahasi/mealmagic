@@ -234,6 +234,7 @@ class Checkout extends StatelessWidget {
                                                         ),
                                                       );
                                                     });
+                                                _addressController.text = "";
                                               },
                                               child: const Text(
                                                 "Accept",
