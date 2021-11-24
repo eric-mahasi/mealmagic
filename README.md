@@ -2,6 +2,8 @@
 
 APT3065-A Mid-term Project for Fall Semester 2021. A food ordering app for SMEs.
 
+<img src="ui/meal magic ui.png" height="500em" />
+
 # Features
 
 A user is able to:
@@ -25,7 +27,7 @@ A user is able to:
 
 ### Sign in & Sign up Screen
 
-<img src="ui/sing in.png" height="500em" /> &nbsp;&nbsp;&nbsp;&nbsp; <img src="ui/sign up" height="500em" />
+<img src="ui/sign in.png" height="500em" /> &nbsp;&nbsp;&nbsp;&nbsp; <img src="ui/sign up.png" height="500em" />
 
 ### Home Page
 
@@ -50,7 +52,7 @@ for details.
 * The design for this app was inspired
   by [this kit](https://fluttermarket.com/view/flutter-restaurant-theme)
   and [this one](https://github.com/Tarikul711/flutter-food-delivery-app-ui)
-  by[Md Tarikul Islam](https://github.com/Tarikul711)
+  by [Md Tarikul Islam](https://github.com/Tarikul711)
 * I adapted the backend functionality
   from [this project](https://github.com/Santos-Enoque/food_app_course)
   by [Santos Enoque](https://github.com/Santos-Enoque)
