@@ -19,7 +19,8 @@ A user is able to:
 
 # What I Learned
 
-* How to design and build cross-platform mobile applications
+* How to design and build cross-platform mobile applications using Flutter
+* How to structure large Flutter applications
 * Using Google's Firebase for user authentication
 * Using Google's Firebase as a backend database
 
